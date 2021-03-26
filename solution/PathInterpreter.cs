@@ -8,8 +8,8 @@ namespace solution
     {
         public (string commands, string edgeOrder) Interpriate<TGraph, TEdge>
            (
-               PathFormater<TEdge> pathFormater,
-               EdgeInfoFormater<TEdge> edgeInfoFormater,
+               CommandFormater<TEdge> commandFormatter,
+               CommandFormater<TEdge> edgeInfoFormater,
                PathFinder<TGraph, TEdge> pathFinder
            )
              where TGraph : BidirectionalGraph<DataVertex, TEdge>
@@ -19,8 +19,8 @@ namespace solution
 
             if (pathFinder.TryFindPath(out IEnumerable<TEdge> path))
             {
-                commands = pathFormater.Format(path);
-                edgeOrder = edgeInfoFormater.Format(path);
+                commands = new Formater<TEdge>(commandFormatter).Format(path);
+                edgeOrder = new Formater<TEdge>(edgeInfoFormater).Format(path);
             }
             else
             {
