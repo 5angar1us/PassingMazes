@@ -4,11 +4,11 @@ using System.Text;
 
 namespace solution
 {
-    public abstract class PathFormater <TEdge> where TEdge : DataEdge
+    public class Formater <TEdge> where TEdge : DataEdge
     {
         protected readonly CommandFormater<TEdge> commandFormater;
 
-        protected PathFormater( CommandFormater<TEdge> commandFormater)
+        public Formater( CommandFormater<TEdge> commandFormater)
         {
             this.commandFormater = commandFormater;
         }
