@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace solution.Converters.NearestIndexes.Model
+namespace solution
 {
-    class BottomNearestIndices : IDataNearestIndices
+    class BottomNearestIndices : DataNearestIndices
     {
-        public ESide NeighborSide { get; } = ESide.Bottom;
+        public ENeighborSide NeighborSide { get; } = ENeighborSide.Bottom;
         public (int r, int c) GetNeighborIndices(int r, int c) => (r + 1, c);
     }
 }

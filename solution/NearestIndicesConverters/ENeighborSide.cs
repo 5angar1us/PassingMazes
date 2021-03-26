@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace solution.Converters.NearestIndexes.Model
+namespace solution
 {
-    public enum ESide
+    public enum ENeighborSide
     {
         Left,
         Top,
