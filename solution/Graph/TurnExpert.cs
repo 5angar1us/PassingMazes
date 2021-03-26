@@ -1,32 +1,29 @@
-﻿using GraphX.Common;
-using solution.Converters.NearestIndexes.Model;
-using solution.Graph.Model;
+﻿using solution.Graph.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution
 {
     class TurnExpert
     {
-        readonly Dictionary<ESide, ESide> TurnPairs = new Dictionary<ESide, ESide>();
-        readonly Dictionary<ESide, ESide> OppositePairs = new Dictionary<ESide, ESide>();
+        readonly Dictionary<ENeighborSide, ENeighborSide> TurnPairs = new Dictionary<ENeighborSide, ENeighborSide>();
+        readonly Dictionary<ENeighborSide, ENeighborSide> OppositePairs = new Dictionary<ENeighborSide, ENeighborSide>();
 
         public TurnExpert()
         {
-            TurnPairs.Add(ESide.Left, ESide.Top);
-            TurnPairs.Add(ESide.Top, ESide.Right);
-            TurnPairs.Add(ESide.Right, ESide.Bottom);
-            TurnPairs.Add(ESide.Bottom, ESide.Left);
+            TurnPairs.Add(ENeighborSide.Left, ENeighborSide.Top);
+            TurnPairs.Add(ENeighborSide.Top, ENeighborSide.Right);
+            TurnPairs.Add(ENeighborSide.Right, ENeighborSide.Bottom);
+            TurnPairs.Add(ENeighborSide.Bottom, ENeighborSide.Left);
 
             CreateOppositePairs();
         }
 
         private void CreateOppositePairs()
         {
-            OppositePairs.Add(ESide.Left, ESide.Right);
-            OppositePairs.Add(ESide.Top, ESide.Bottom);
+            OppositePairs.Add(ENeighborSide.Left, ENeighborSide.Right);
+            OppositePairs.Add(ENeighborSide.Top, ENeighborSide.Bottom);
 
             var list = OppositePairs.ToList();
             list.ForEach(x => OppositePairs.Add(x.Value, x.Key));
@@ -46,9 +43,9 @@ namespace solution
 
         }
 
-        public ESide GetOppositeSide(ESide eSide)
+        public ENeighborSide GetOppositENeighborSide(ENeighborSide ENeighborSide)
         {
-            return OppositePairs[eSide];
+            return OppositePairs[ENeighborSide];
         }
 
     }
