@@ -1,10 +1,7 @@
-﻿using solution.Map;
-using solution.Map.Model;
-using solution.Map.Model.MapObjects;
+﻿using solution.Map.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution.Map.Model
 {

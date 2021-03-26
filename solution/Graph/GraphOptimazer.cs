@@ -1,9 +1,6 @@
-﻿using QuickGraph.Algorithms.Search;
-using solution.Graph.Model;
-using System;
+﻿using solution.Graph.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution
 {

@@ -1,7 +1,6 @@
 ﻿using QuickGraph;
 using QuickGraph.Algorithms;
 using solution.Graph.Model;
-using solution.Map.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

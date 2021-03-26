@@ -1,13 +1,9 @@
-﻿using QuickGraph;
-using solution.Converters.NearestIndexes;
-using solution.Converters.NearestIndexes.Model;
-using solution.Graph.Model;
+﻿using solution.Graph.Model;
 using solution.Map.Model;
 using solution.Map.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution.Converters
 {
@@ -59,7 +55,7 @@ namespace solution.Converters
         }
 
 
-        private IEnumerable<(MapObject mapObject, ESide neighborSide)> GetNeihborsObjectData(GameMap map, int row, int column)
+        private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(GameMap map, int row, int column)
         {
             var nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors;
             return nearestIndiceConvertors.ConvertAll(x =>
@@ -69,10 +65,10 @@ namespace solution.Converters
             });
         }
 
-        private IEnumerable<(DataVertex, ESide neighborSide)> GetNeighborVertexcesData
+        private IEnumerable<(DataVertex, ENeighborSide neighborSide)> GetNeighborVertexcesData
             (
                 IEnumerable<DataVertex> vertices,
-                IEnumerable<(MapObject mapObject, ESide neighborSide)> neighborsData
+                IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData
             )
         {
             return vertices.Join(
@@ -82,7 +78,7 @@ namespace solution.Converters
                  (vertice, neighbornData) => (vertex: vertice, neighborVertex: neighbornData.neighborSide));
         }
 
-        private IEnumerable<DataEdge> CreateVertexEdges(DataVertex source, IEnumerable<(DataVertex neighborVertex, ESide neighborSide)> neighborVertexces)
+        private IEnumerable<DataEdge> CreateVertexEdges(DataVertex source, IEnumerable<(DataVertex neighborVertex, ENeighborSide neighborSide)> neighborVertexces)
         {
             var edges = new List<DataEdge>();
             return neighborVertexces.Select(x =>

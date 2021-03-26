@@ -1,6 +1,4 @@
-﻿using solution.Converters.NearestIndexes.Model;
-using solution.Graph.Model;
-using System;
+﻿using solution.Graph.Model;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,14 +7,14 @@ namespace solution
     public abstract class CommandFormater <TEdge>
         where TEdge : DataEdge
     {
-        protected static Dictionary<ESide, string> pairs = new Dictionary<ESide, string>();
+        protected static Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
 
         protected CommandFormater()
         {
-            pairs.Add(ESide.Left, "L");
-            pairs.Add(ESide.Top, "U");
-            pairs.Add(ESide.Right, "R");
-            pairs.Add(ESide.Bottom, "D");
+            pairs.Add(ENeighborSide.Left, "L");
+            pairs.Add(ENeighborSide.Top, "U");
+            pairs.Add(ENeighborSide.Right, "R");
+            pairs.Add(ENeighborSide.Bottom, "D");
         }
 
         public virtual void Format(StringBuilder sb, TEdge edge)

@@ -1,19 +1,10 @@
-﻿using GraphX.Common;
-using QuickGraph;
-using QuickGraph.Algorithms.Search;
-using solution.Converters;
+﻿using solution.Converters;
 using solution.Graph.Model;
-using solution.Map;
 using solution.Map.Model;
 using solution.Parsers;
 using solution.Report;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace solution
 {

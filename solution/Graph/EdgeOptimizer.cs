@@ -1,10 +1,8 @@
 ﻿using QuickGraph.Algorithms.Search;
-using solution.Converters.NearestIndexes.Model;
 using solution.Graph.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution
 {
@@ -58,7 +56,7 @@ namespace solution
                 var edge = CreateEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
                 dataEdges.Add(edge);
 
-                var revercedEdge = CreateEdge(target, firstKeyVertex, turnNeighbor.GetOppositeSide(e.NeighborSide), PassedNonKeyPeaksCounter);
+                var revercedEdge = CreateEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
                 dataEdges.Add(revercedEdge);
 
                 firstKeyVertex = null;
@@ -73,7 +71,7 @@ namespace solution
             (
                 DataVertex source,
                 DataVertex target,
-                ESide eNeighborSide,
+                ENeighborSide eNeighborSide,
                 int passedNonKeyPeaksCounter
             )
         {

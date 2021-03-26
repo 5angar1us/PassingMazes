@@ -1,10 +1,7 @@
-﻿using solution.Map;
-using solution.Map.Model;
+﻿using solution.Map.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace solution.Parsers
 {

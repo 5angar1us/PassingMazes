@@ -1,6 +1,4 @@
-﻿using GraphX.Common.Models;
-
-namespace solution.Graph.Model
+﻿namespace solution.Graph.Model
 {
     public class OptimazedDataEdge : DataEdge
     {

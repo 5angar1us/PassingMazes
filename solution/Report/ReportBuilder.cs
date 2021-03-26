@@ -1,8 +1,5 @@
 ﻿using solution.Map.Model;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 
 namespace solution.Report
 {
