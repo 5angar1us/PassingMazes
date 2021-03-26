@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace solution.Map.Model.MapObjects
+namespace solution
 {
     class Start : MapObject
     {
