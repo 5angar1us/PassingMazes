@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using solution.Converters.NearestIndexes.Model;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace solution
+namespace solution.Converters.NearestIndexes
 {
     class NearestIndexConvertersFactory
     {
-        public static List<DataNearestIndices> NearestIndiceConvertors { private set; get; } = new List<DataNearestIndices>()
+        public static List<IDataNearestIndices> NearestIndiceConvertors { get; } = new List<IDataNearestIndices>()
         {
             new LeftNearestIndices(),
             new TopNearestIndices(),
