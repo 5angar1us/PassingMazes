@@ -16,56 +16,48 @@ namespace solution
             dfs.DiscoverVertex += Dfs_DiscoverVertex;
             dfs.FinishVertex += Dfs_FinishVertex;
             dfs.TreeEdge += Dfs_TreeEdge;
-            //do the search
+
             dfs.Compute();
 
             return dataEdges;
         }
 
         private readonly List<OptimazedDataEdge> dataEdges = new List<OptimazedDataEdge>();
-        
+        private IEnumerable<DataVertex> keyVertices;
+       
         private DataVertex firstKeyVertex;
-        private IEnumerable<DataVertex> keyVertices; 
-        private TurnExpert turnNeighbor = new TurnExpert();
+        private readonly TurnExpert turnNeighbor = new TurnExpert();
+
         private int PassedNonKeyPeaksCounter = 0;
-        
 
         private void Dfs_FinishVertex(DataVertex vertex)
         {
             firstKeyVertex = null;
-
-            //endVertexOrder.Add(@$"{vertex.Name}");
         }
 
         private void Dfs_TreeEdge(DataEdge e)
         {
-            var source = e.Source;
-            var target = e.Target;
-            if (keyVertices.Contains(source) & firstKeyVertex == null)
+            DataVertex source = e.Source;
+            DataVertex target = e.Target;
+            if (keyVertices.Contains(source) && firstKeyVertex == null)
             {
                 firstKeyVertex = source;
                 PassedNonKeyPeaksCounter = 0;
-              
             }
 
             PassedNonKeyPeaksCounter++;
-            
 
             if (keyVertices.Contains(target))
             {
-                var edge = CreateEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
+                OptimazedDataEdge edge = CreateEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
                 dataEdges.Add(edge);
 
-                var revercedEdge = CreateEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
+                OptimazedDataEdge revercedEdge = CreateEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
                 dataEdges.Add(revercedEdge);
 
                 firstKeyVertex = null;
             }
-
-            //edgeTraversalOrder.Add(@$"{e.Text}");
         }
-
-
 
         private OptimazedDataEdge CreateEdge
             (
@@ -85,15 +77,8 @@ namespace solution
             };
         }
 
-
-
         private void Dfs_DiscoverVertex(DataVertex vertex)
         {
-            //if (KeyVertices.Contains(vertex))
-            //{
-            //    keyVertexOrder.Add(@$"{vertex.Name}");
-            //}
-            //vertexTraversalOrder.Add(@$"{vertex.Name}");
         }
     }
 }

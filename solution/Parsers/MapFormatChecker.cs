@@ -10,7 +10,6 @@ namespace solution.Parsers
     {
         public void CheckBody(MapData mapData)
         {
-
             if (mapData.MapBodySymbols.Count() != mapData.Height)
                 throw new MapFormatException("The number of lines of the map body does not match the specified");
 
@@ -29,8 +28,6 @@ namespace solution.Parsers
 
             if (IsMapBordersClosed(mapData))
                 throw new MapFormatException("Map border is not closed");
-            
-
         }
         private bool IsMapBordersClosed(MapData mapData)
         {
@@ -67,7 +64,5 @@ namespace solution.Parsers
 
             return uniqueMapSymbols.Any(x => !MapObjectsFactories.MapObjectsSymbols.Contains(x));
         }
-
-        
     }
 }

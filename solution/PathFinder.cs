@@ -27,7 +27,6 @@ namespace solution
             var root = GetVertexBySymbol(vertices, new Start().Symbol);
             var target = GetVertexBySymbol(vertices, new Quit().Symbol);
 
-
             Func<TEdge, double> edgeCost = e => 1; // constant cost
             // compute shortest paths
             var tryGetPaths = dataGraph.ShortestPathsDijkstra(edgeCost, root);
@@ -35,7 +34,6 @@ namespace solution
             StringBuilder sb = new StringBuilder();
 
             return tryGetPaths(target, out path);
-
         }
 
         private DataVertex GetVertexBySymbol(IEnumerable<DataVertex> vertices, char symbol)

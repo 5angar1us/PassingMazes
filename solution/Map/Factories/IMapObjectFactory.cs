@@ -4,6 +4,6 @@ namespace solution.Map
 {
     public interface IMapObjectFactory
     {
-        public MapObject CreateObject(); 
+        public MapObject CreateObject();
     }
 }

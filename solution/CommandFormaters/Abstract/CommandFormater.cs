@@ -4,7 +4,7 @@ using System.Text;
 
 namespace solution
 {
-    public abstract class CommandFormater <TEdge>
+    public abstract class CommandFormater<TEdge>
         where TEdge : DataEdge
     {
         protected static Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
@@ -19,10 +19,7 @@ namespace solution
 
         public virtual void Format(StringBuilder sb, TEdge edge)
         {
-            
         }
-       
 
-       
     }
 }

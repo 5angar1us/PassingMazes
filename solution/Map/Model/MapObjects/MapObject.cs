@@ -4,16 +4,14 @@ namespace solution.Map.Model.MapObjects
 {
     public abstract class MapObject
     {
+        public string Name { protected set; get; }
+        public char Symbol { protected set; get; }
+
         protected MapObject(char symbol, int i = -1)
         {
             Symbol = symbol;
             Name = Symbol + i.ToString();
         }
-
-
-        public string Name { protected set; get; }
-        public char Symbol { protected set; get; }
-
 
         public override bool Equals(object obj)
         {
@@ -32,6 +30,4 @@ namespace solution.Map.Model.MapObjects
             return HashCode.Combine(Name, Symbol);
         }
     }
-
-
 }

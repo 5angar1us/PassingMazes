@@ -2,15 +2,20 @@
 
 namespace solution
 {
-    class NearestIndexConvertersFactory
+    internal static class NearestIndexConvertersFactory
     {
-        public static List<DataNearestIndices> NearestIndiceConvertors { private set; get; } = new List<DataNearestIndices>()
+        static NearestIndexConvertersFactory()
         {
-            new LeftNearestIndices(),
-            new TopNearestIndices(),
-            new RightNearestIndices(),
-            new BottomNearestIndices()
-        };
+            NearestIndiceConvertors = new List<DataNearestIndices>()
+            {
+                new LeftNearestIndices(),
+                new TopNearestIndices(),
+                new RightNearestIndices(),
+                new BottomNearestIndices()
+            };
+        }
 
+        public static List<DataNearestIndices> NearestIndiceConvertors { get; }
     }
 }
+

@@ -17,16 +17,11 @@ namespace solution
             TurnPairs.Add(ENeighborSide.Right, ENeighborSide.Bottom);
             TurnPairs.Add(ENeighborSide.Bottom, ENeighborSide.Left);
 
-            CreateOppositePairs();
-        }
-
-        private void CreateOppositePairs()
-        {
             OppositePairs.Add(ENeighborSide.Left, ENeighborSide.Right);
             OppositePairs.Add(ENeighborSide.Top, ENeighborSide.Bottom);
 
-            var list = OppositePairs.ToList();
-            list.ForEach(x => OppositePairs.Add(x.Value, x.Key));
+           var list = OppositePairs.ToList();
+           list.ForEach(x => OppositePairs.Add(x.Value, x.Key));
         }
 
         public bool IsTurn(IGrouping<DataVertex, DataEdge> x)
@@ -40,13 +35,11 @@ namespace solution
             var secondSide = list[1].NeighborSide;
 
             return TurnPairs[firstSide] == secondSide || TurnPairs[secondSide] == firstSide;
-
         }
 
         public ENeighborSide GetOppositENeighborSide(ENeighborSide ENeighborSide)
         {
             return OppositePairs[ENeighborSide];
         }
-
     }
 }

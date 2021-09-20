@@ -14,7 +14,7 @@ namespace solution.Parsers
         {
             if (textMapData.Trim().Length == 0)
                 throw new ArgumentException();
-            
+
             var mapData = ParseMapData(textMapData);
 
             return new GameMap(mapData);
@@ -26,7 +26,7 @@ namespace solution.Parsers
 
             (var height, var width) = ParseMapDimensions(textRows);
             var mapBodySymbols = ParseMapBodySymbols(textRows);
-            
+
             var mapData = new MapData()
             {
                 MapBodySymbols = mapBodySymbols,
@@ -36,7 +36,7 @@ namespace solution.Parsers
 
             var formatChecker = new MapFormatChecker();
             formatChecker.CheckBody(mapData);
-            
+
             return mapData;
         }
 
@@ -61,7 +61,5 @@ namespace solution.Parsers
 
             return mapDimensionsParser.Parse(textMapDimensions);
         }
-
-
     }
 }

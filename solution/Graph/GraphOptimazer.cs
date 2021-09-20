@@ -8,11 +8,11 @@ namespace solution
     {
         public OptimazedDataGraph Optimaze(DataGraph dataGraph)
         {
-            var dataEdges = dataGraph.Edges;
-            var keyVertices = GetKeyVertices(dataEdges);
+            IEnumerable<DataEdge> dataEdges = dataGraph.Edges;
+            IEnumerable<DataVertex> keyVertices = GetKeyVertices(dataEdges);
 
             var edgeOptimizer = new EdgeOptimizer();
-            var optimazedDataEdges = edgeOptimizer.GetOptimazedDataEdges(dataGraph, keyVertices.ToList());
+            IEnumerable<OptimazedDataEdge> optimazedDataEdges = edgeOptimizer.GetOptimazedDataEdges(dataGraph, keyVertices.ToList());
 
             var optimazedDataGraph = new OptimazedDataGraph();
             optimazedDataGraph.AddVertexRange(keyVertices);
@@ -39,6 +39,5 @@ namespace solution
 
             return vertices;
         }
-
     }
 }

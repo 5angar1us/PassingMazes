@@ -8,7 +8,6 @@ namespace solution.Map
 {
     public static class MapObjectsFactories
     {
-
         public static ReadOnlyCollection<IMapObjectFactory> mapObjectFactories = new List<IMapObjectFactory>
         {
             new MapObjectFactory<Wall>(),
@@ -19,14 +18,13 @@ namespace solution.Map
 
         public static ReadOnlyCollection<MapObject> MapObjects { get; } = mapObjectFactories.Select(x => x.CreateObject()).ToList().AsReadOnly();
 
-        
         public static ReadOnlyCollection<char> MapObjectsSymbols { get; } = MapObjects.Select(x => x.Symbol).ToList().AsReadOnly();
 
         static public MapObject CreateMapObject(char symbol)
         {
             for (int i = 0; i < mapObjectFactories.Count; i++)
             {
-                var x = MapObjects[i];
+                MapObject x = MapObjects[i];
 
                 if (x.Symbol.Equals(symbol))
                     return mapObjectFactories[i].CreateObject();

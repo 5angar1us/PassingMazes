@@ -6,12 +6,10 @@ namespace solution
     {
         public Quit(int i) : base('Q', i)
         {
-
         }
 
         public Quit() : base('Q')
         {
-
         }
     }
 }

@@ -25,7 +25,7 @@ namespace solution.Report
             }
         }
 
-        public  void AppenMap(GameMap map)
+        public void AppendMap(GameMap map)
         {
             int maxNameLenght = -1;
 
@@ -37,7 +37,7 @@ namespace solution.Report
                     maxNameLenght = name.Length;
             });
 
-            var nameMessageLenght = maxNameLenght+1;
+            var nameMessageLenght = maxNameLenght + 1;
 
             for (int r = 0; r < map.Height; r++)
             {

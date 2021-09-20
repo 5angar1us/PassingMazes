@@ -13,15 +13,13 @@ namespace solution
         static void Main(string[] args)
         {
             var textMap = "";
-            //var soucePath = args[0];
+
             var soucePath = @"D:\1.Developing\С#\PassingMazesAlgorithm\solution\Properties\TextFile1.txt";
 
             using (var sr = new StreamReader(soucePath))
             {
                 textMap = sr.ReadToEnd();
             }
-
-            var reportBuilder  = new ReportBuilder();
 
             var parser = new MapParser();
             GameMap map = parser.Parse(textMap);
@@ -36,20 +34,21 @@ namespace solution
             var pathFinder = new PathFinder<DataGraph, DataEdge>(graph);
 
             var pathInterpreter = new PathInterpreter();
-            
+
             (string optimazedCommands, string optimazedEdgeOrder) = pathInterpreter.Interpriate(new OptimazedCommadFormater(), new EdgeInfoFormater<OptimazedDataEdge>(), optimazedPathFinder);
 
             (string commands, string edgeOrder) = pathInterpreter.Interpriate(new DataCommandFormater(), new EdgeInfoFormater<DataEdge>(), pathFinder);
+
+            var reportBuilder = new ReportBuilder();
 
             reportBuilder.AppendSeparator();
             reportBuilder.AppendSymbols(map);
 
             reportBuilder.AppendSeparator();
-            reportBuilder.AppenMap(map);
+            reportBuilder.AppendMap(map);
 
             if (optimazedCommands.Equals(commands))
             {
-
                 reportBuilder.AppendMessage("The commands are equals", commands);
                 reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
                 reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
@@ -61,14 +60,11 @@ namespace solution
 
                 reportBuilder.AppendMessage(nameof(optimazedCommands), optimazedCommands);
                 reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
-
             }
 
             reportBuilder.AppendSeparator();
 
             Console.WriteLine(reportBuilder.GetReport());
         }
-
-        
     }
 }

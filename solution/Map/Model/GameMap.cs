@@ -7,18 +7,17 @@ namespace solution.Map.Model
 {
     public class GameMap
     {
-        const int minSize = 1;
-
-        public MapObject[,] Cells { get; }
-
         public int Height { get; }
         public int Width { get; }
+
+        private const int _minSize = 1;
+        private MapObject[,] Cells { get; }
 
         public MapObject this[int height, int width]
         {
             get
             {
-                return Cells[height,width];
+                return Cells[height, width];
             }
             set
             {
@@ -28,7 +27,7 @@ namespace solution.Map.Model
 
         public GameMap(MapData mapData)
         {
-            if (mapData.Height < minSize || mapData.Width < minSize)
+            if (mapData.Height < _minSize || mapData.Width < _minSize)
                 throw new ArgumentException();
 
             Height = mapData.Height;
@@ -38,7 +37,6 @@ namespace solution.Map.Model
 
             var mapObjects = mapData.MapBodySymbols.Select(x => x.Select(o => MapObjectsFactories.CreateMapObject(o)));
             ReadMapObjects(mapObjects);
-
         }
 
         public void ProcessFunctionOverData(Action<int, int> func)
@@ -82,7 +80,6 @@ namespace solution.Map.Model
                     Cells[r, c] = iterCell.Current;
                 }
             }
-
         }
     }
 }

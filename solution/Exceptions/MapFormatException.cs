@@ -10,7 +10,6 @@ namespace solution
 
         public MapFormatException(string message) : base(message)
         {
-
         }
     }
 }
