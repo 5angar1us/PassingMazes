@@ -1,4 +1,4 @@
-﻿using solution.Map.Model.MapObjects;
+﻿using solution.GameMap.Model.MapObjects;
 
 namespace solution
 {

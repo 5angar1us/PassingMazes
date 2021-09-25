@@ -1,10 +1,10 @@
-﻿using solution.Map.Model.MapObjects;
+﻿using solution.GameMap.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace solution.Map
+namespace solution.GameMap
 {
     public static class MapObjectsFactories
     {

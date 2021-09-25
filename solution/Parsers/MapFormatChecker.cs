@@ -1,5 +1,5 @@
-﻿using solution.Map;
-using solution.Map.Model;
+﻿using solution.GameMap;
+using solution.GameMap.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

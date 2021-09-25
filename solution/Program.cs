@@ -1,6 +1,6 @@
 ﻿using solution.Converters;
 using solution.Graph.Model;
-using solution.Map.Model;
+using solution.GameMap.Model;
 using solution.Parsers;
 using solution.Report;
 using System;
@@ -21,25 +21,30 @@ namespace solution
                 textMap = sr.ReadToEnd();
             }
 
-            var parser = new MapParser();
-            GameMap map = parser.Parse(textMap);
+            var parser = new MapParser(new MapFormatChecker());
+            Map map = parser.Parse(textMap);
 
             var mapConverter = new MapConverter();
-            var graph = mapConverter.ToGraph(map);
+            DataGraph graph = mapConverter.ToGraph(map);
 
             GraphOptimazer graphOptimazer = new GraphOptimazer();
-            var optimazedGraph = graphOptimazer.Optimaze(graph);
+            OptimazedDataGraph optimazedGraph = graphOptimazer.Optimaze(graph);
 
-            var optimazedPathFinder = new PathFinder<OptimazedDataGraph, OptimazedDataEdge>(optimazedGraph);
-            var pathFinder = new PathFinder<DataGraph, DataEdge>(graph);
+ 
 
             var pathInterpreter = new PathInterpreter();
 
-            (string optimazedCommands, string optimazedEdgeOrder) = pathInterpreter.Interpriate(new OptimazedCommadFormater(), new EdgeInfoFormater<OptimazedDataEdge>(), optimazedPathFinder);
+            (string optimazedCommands, string optimazedEdgeOrder) 
+                = pathInterpreter.Interpriate(
+                    new OptimazedCommadFormater(), 
+                    new EdgeInfoFormater<OptimazedDataEdge>(), 
+                    new PathFinder<OptimazedDataGraph, 
+                    OptimazedDataEdge>(optimazedGraph)
+                );
 
-            (string commands, string edgeOrder) = pathInterpreter.Interpriate(new DataCommandFormater(), new EdgeInfoFormater<DataEdge>(), pathFinder);
+            (string commands, string edgeOrder) = pathInterpreter.Interpriate(new DataCommandFormater(), new EdgeInfoFormater<DataEdge>(), new PathFinder<DataGraph, DataEdge>(graph));
 
-            var reportBuilder = new ReportBuilder();
+            var reportBuilder = new ConsoleReportBuilder();
 
             reportBuilder.AppendSeparator();
             reportBuilder.AppendSymbols(map);

@@ -15,7 +15,7 @@ namespace solution
             };
         }
 
-        public static List<DataNearestIndices> NearestIndiceConvertors { get; }
+        public static IEnumerable<DataNearestIndices> NearestIndiceConvertors { get; }
     }
 }
 

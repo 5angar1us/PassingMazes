@@ -1,4 +1,4 @@
-﻿using solution.Map.Model;
+﻿using solution.GameMap.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,25 +7,33 @@ namespace solution.Parsers
 {
     class MapParser
     {
-        private const int minMapSize = 10;
-        private const int maxMapSize = 50;
 
-        public GameMap Parse(string textMapData)
+        private MapFormatChecker _formatChecker;
+
+        private const int _minMapSize = 10;
+        private const int _maxMapSize = 50;
+
+        public MapParser(MapFormatChecker formatChecker)
+        {
+            _formatChecker = formatChecker;
+        }
+
+        public Map Parse(string textMapData)
         {
             if (textMapData.Trim().Length == 0)
                 throw new ArgumentException();
 
             var mapData = ParseMapData(textMapData);
 
-            return new GameMap(mapData);
+            return new Map(mapData);
         }
 
         private MapData ParseMapData(string text)
         {
-            var textRows = text.Split(Environment.NewLine);
+            string[] textRows = text.Split(Environment.NewLine);
 
-            (var height, var width) = ParseMapDimensions(textRows);
-            var mapBodySymbols = ParseMapBodySymbols(textRows);
+            (int height, int width) = ParseMapDimensions(GetMapDimensions(textRows));
+            IEnumerable<IEnumerable<char>> mapBodySymbols = ParseMapBodySymbols(GetMapBody(textRows));
 
             var mapData = new MapData()
             {
@@ -34,16 +42,16 @@ namespace solution.Parsers
                 Width = width
             };
 
-            var formatChecker = new MapFormatChecker();
-            formatChecker.CheckBody(mapData);
+            _formatChecker.CheckBody(mapData);
 
             return mapData;
         }
 
-        private IEnumerable<IEnumerable<char>> ParseMapBodySymbols(IEnumerable<string> textRows)
-        {
-            var mapBody = textRows.Skip(1);
+        private string GetMapDimensions(IEnumerable<string> textRows) => textRows.First();
+        private IEnumerable<string> GetMapBody(IEnumerable<string> textRows) => textRows.Skip(1);
 
+        private IEnumerable<IEnumerable<char>> ParseMapBodySymbols(IEnumerable<string> mapBody)
+        {
             return mapBody
               .Select(x =>
               {
@@ -53,13 +61,11 @@ namespace solution.Parsers
               });
         }
 
-        private (int height, int width) ParseMapDimensions(IEnumerable<string> textRows)
+        private (int height, int width) ParseMapDimensions(string mapDimensions)
         {
-            var textMapDimensions = textRows.First();
+            var mapDimensionsParser = new MapDimensionsParser(_maxMapSize, _minMapSize);
 
-            var mapDimensionsParser = new MapDimensionsParser(maxMapSize, minMapSize);
-
-            return mapDimensionsParser.Parse(textMapDimensions);
+            return mapDimensionsParser.Parse(mapDimensions);
         }
     }
 }

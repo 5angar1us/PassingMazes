@@ -1,9 +1,9 @@
-﻿using solution.Map.Model;
+﻿using solution.GameMap.Model;
 using System.Text;
 
 namespace solution.Report
 {
-    public class ReportBuilder
+    public class ConsoleReportBuilder
     {
         private readonly StringBuilder stringBuilder = new StringBuilder();
 
@@ -13,7 +13,7 @@ namespace solution.Report
             stringBuilder.Append($"{title} : {commands}").Append(' ').AppendLine();
         }
 
-        public void AppendSymbols(GameMap map)
+        public void AppendSymbols(Map map)
         {
             for (int r = 0; r < map.Height; r++)
             {
@@ -25,9 +25,9 @@ namespace solution.Report
             }
         }
 
-        public void AppendMap(GameMap map)
+        public void AppendMap(Map map)
         {
-            int maxNameLenght = -1;
+            var maxNameLenght = -1;
 
             map.ProcessFunctionOverData((r, c) =>
             {

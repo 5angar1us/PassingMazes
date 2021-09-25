@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace solution.Map.Model.MapObjects
+namespace solution.GameMap.Model.MapObjects
 {
     public abstract class MapObject
     {

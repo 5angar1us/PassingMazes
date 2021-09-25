@@ -1,11 +1,11 @@
-﻿using solution.Map.Model.MapObjects;
+﻿using solution.GameMap.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace solution.Map.Model
+namespace solution.GameMap.Model
 {
-    public class GameMap
+    public class Map
     {
         public int Height { get; }
         public int Width { get; }
@@ -25,7 +25,7 @@ namespace solution.Map.Model
             }
         }
 
-        public GameMap(MapData mapData)
+        public Map(MapData mapData)
         {
             if (mapData.Height < _minSize || mapData.Width < _minSize)
                 throw new ArgumentException();

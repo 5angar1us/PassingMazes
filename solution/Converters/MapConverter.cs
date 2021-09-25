@@ -1,6 +1,6 @@
 ﻿using solution.Graph.Model;
-using solution.Map.Model;
-using solution.Map.Model.MapObjects;
+using solution.GameMap.Model;
+using solution.GameMap.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace solution.Converters
 {
     internal class MapConverter
     {
-        public DataGraph ToGraph(GameMap map)
+        public DataGraph ToGraph(Map map)
         {
             var dataGraph = new DataGraph();
 
@@ -22,7 +22,7 @@ namespace solution.Converters
             return dataGraph;
         }
 
-        private IEnumerable<DataVertex> CreateVertices(GameMap map)
+        private IEnumerable<DataVertex> CreateVertices(Map map)
         {
             var vertices = new List<DataVertex>();
             var wall = new Wall();
@@ -40,7 +40,7 @@ namespace solution.Converters
             return vertices;
         }
 
-        private IEnumerable<DataEdge> CreateEdges(GameMap map, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdges(Map map, IEnumerable<DataVertex> vertices)
         {
             return vertices
                 .Select(vertex =>
@@ -53,7 +53,7 @@ namespace solution.Converters
                 .SelectMany(x => x);
         }
 
-        private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(GameMap map, int row, int column)
+        private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(Map map, int row, int column)
         {
             var nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
             return nearestIndiceConvertors.ConvertAll(x =>
@@ -78,7 +78,6 @@ namespace solution.Converters
 
         private IEnumerable<DataEdge> CreateVertexEdges(DataVertex source, IEnumerable<(DataVertex neighborVertex, ENeighborSide neighborSide)> neighborVertexces)
         {
-            var edges = new List<DataEdge>();
             return neighborVertexces.Select(x =>
             {
                 DataVertex target = x.neighborVertex;

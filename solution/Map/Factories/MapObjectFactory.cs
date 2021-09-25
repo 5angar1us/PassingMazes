@@ -1,7 +1,7 @@
-﻿using solution.Map.Model.MapObjects;
+﻿using solution.GameMap.Model.MapObjects;
 using System;
 
-namespace solution.Map
+namespace solution.GameMap
 {
     public class MapObjectFactory<T> : IMapObjectFactory where T : MapObject
     {
