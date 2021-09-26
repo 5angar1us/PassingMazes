@@ -3,7 +3,7 @@ using System.Text;
 
 namespace solution
 {
-    public class OptimazedCommadFormater : CommandFormater<OptimazedDataEdge>
+    public class OptimazedDataCommadFormater : AbstractFormater<OptimazedDataEdge>
     {
         public override void Format(StringBuilder sb, OptimazedDataEdge edge)
         {

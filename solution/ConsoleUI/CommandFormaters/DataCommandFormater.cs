@@ -3,7 +3,7 @@ using System.Text;
 
 namespace solution
 {
-    class DataCommandFormater : CommandFormater<DataEdge>
+    public class DataCommandFormater : AbstractFormater<DataEdge>
     {
         public override void Format(StringBuilder sb, DataEdge edge)
         {

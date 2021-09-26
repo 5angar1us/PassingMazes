@@ -4,12 +4,12 @@ using System.Text;
 
 namespace solution
 {
-    public abstract class CommandFormater<TEdge>
+    public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
     {
         protected static Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
 
-        protected CommandFormater()
+        protected AbstractFormater()
         {
             pairs.Add(ENeighborSide.Left, "L");
             pairs.Add(ENeighborSide.Top, "U");

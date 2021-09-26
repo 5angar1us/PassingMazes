@@ -12,14 +12,15 @@ namespace solution
        where TGraph : BidirectionalGraph<DataVertex, TEdge>
        where TEdge : DataEdge
     {
-        private TGraph dataGraph;
+        private readonly TGraph dataGraph;
+        private readonly Func<TEdge, double> edgeCost = e => 1; // constant cost
 
         public PathFinder(TGraph dataGraph)
         {
             this.dataGraph = dataGraph;
         }
 
-        public bool TryFindPath(out IEnumerable<TEdge> path)
+        public IEnumerable<TEdge> Find()
 
         {
             var vertices = dataGraph.Vertices;
@@ -27,18 +28,16 @@ namespace solution
             var root = GetVertexBySymbol(vertices, new Start().Symbol);
             var target = GetVertexBySymbol(vertices, new Quit().Symbol);
 
-            Func<TEdge, double> edgeCost = e => 1; // constant cost
             // compute shortest paths
             var tryGetPaths = dataGraph.ShortestPathsDijkstra(edgeCost, root);
 
-            StringBuilder sb = new StringBuilder();
-
-            return tryGetPaths(target, out path);
+            tryGetPaths(target, out IEnumerable<TEdge> path);
+            return path;
         }
 
         private DataVertex GetVertexBySymbol(IEnumerable<DataVertex> vertices, char symbol)
         {
-            return vertices.Where(x => x.Symbol == symbol).First();
+            return vertices.First(x => x.Symbol == symbol);
         }
     }
 }
