@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace solution.Parsers
 {
-    class MapParser
+    public class MapParser
     {
 
         private MapFormatChecker _formatChecker;

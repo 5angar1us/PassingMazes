@@ -2,7 +2,7 @@
 
 namespace solution
 {
-    class Wall : MapObject
+    public class Wall : MapObject
     {
         public Wall(int i) : base('X', i)
         {

@@ -2,7 +2,7 @@
 
 namespace solution.Graph.Model
 {
-    class DataGraph : BidirectionalGraph<DataVertex, DataEdge>
+    public class DataGraph : BidirectionalGraph<DataVertex, DataEdge>
     {
     }
 }

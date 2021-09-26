@@ -2,7 +2,7 @@
 
 namespace solution.Parsers
 {
-    class MapDimensionsParser
+    public class MapDimensionsParser
     {
         private readonly int maxMapSize;
         private readonly int minMapSize;

@@ -2,7 +2,7 @@
 
 namespace solution
 {
-    class Quit : MapObject
+    public class Quit : MapObject
     {
         public Quit(int i) : base('Q', i)
         {

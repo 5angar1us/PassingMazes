@@ -2,7 +2,7 @@
 
 namespace solution
 {
-    class Start : MapObject
+    public class Start : MapObject
     {
         public Start(int i) : base('S', i)
         {

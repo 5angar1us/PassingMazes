@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace solution
 {
-    class TurnExpert
+    public class TurnExpert
     {
         readonly Dictionary<ENeighborSide, ENeighborSide> TurnPairs = new Dictionary<ENeighborSide, ENeighborSide>();
         readonly Dictionary<ENeighborSide, ENeighborSide> OppositePairs = new Dictionary<ENeighborSide, ENeighborSide>();

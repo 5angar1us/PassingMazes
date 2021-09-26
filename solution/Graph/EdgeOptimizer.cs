@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace solution
 {
-    class EdgeOptimizer
+    public class EdgeOptimizer
     {
         public IEnumerable<OptimazedDataEdge> GetOptimazedDataEdges(DataGraph dataGraph, List<DataVertex> keyVertices)
         {

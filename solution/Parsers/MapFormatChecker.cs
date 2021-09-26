@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace solution.Parsers
 {
-    class MapFormatChecker
+    public class MapFormatChecker
     {
         public void CheckBody(MapData mapData)
         {

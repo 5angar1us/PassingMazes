@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace solution
 {
-    class GraphOptimazer
+    public class GraphOptimazer
     {
         public OptimazedDataGraph Optimaze(DataGraph dataGraph)
         {

@@ -2,5 +2,5 @@
 
 namespace solution.Graph.Model
 {
-    class OptimazedDataGraph : BidirectionalGraph<DataVertex, OptimazedDataEdge> { }
+    public class OptimazedDataGraph : BidirectionalGraph<DataVertex, OptimazedDataEdge> { }
 }
