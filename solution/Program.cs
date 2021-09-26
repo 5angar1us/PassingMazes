@@ -5,6 +5,7 @@ using solution.Parsers;
 using solution.Report;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace solution
 {
@@ -12,64 +13,39 @@ namespace solution
     {
         static void Main(string[] args)
         {
-            var textMap = "";
+            var maze = @"   10 10
+                            X X X X X X X X X X
+                            X S . . . . . . . X
+                            X X X X X . X X X X
+                            X . . . . . X . . X
+                            X . X . X X X X . X
+                            X . X . . . X X . X
+                            X . X X X . . . . X
+                            X . X . X . X X X X
+                            X . . . X . . . Q X
+                            X X X X X X X X X X";
 
-            var soucePath = @"D:\1.Developing\С#\PassingMazesAlgorithm\solution\Properties\TextFile1.txt";
+            
 
-            using (var sr = new StreamReader(soucePath))
-            {
-                textMap = sr.ReadToEnd();
-            }
-
-            var parser = new MapParser(new MapFormatChecker());
-            Map map = parser.Parse(textMap);
-
-            var mapConverter = new MapConverter();
-            DataGraph graph = mapConverter.ToGraph(map);
-
-            GraphOptimazer graphOptimazer = new GraphOptimazer();
-            OptimazedDataGraph optimazedGraph = graphOptimazer.Optimaze(graph);
-
- 
+            var optimazedGame = new OptimazedGame();
+            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedGame.Run(maze);
 
             var pathInterpreter = new PathInterpreter();
 
-            (string optimazedCommands, string optimazedEdgeOrder) 
-                = pathInterpreter.Interpriate(
-                    new OptimazedCommadFormater(), 
-                    new EdgeInfoFormater<OptimazedDataEdge>(), 
-                    new PathFinder<OptimazedDataGraph, 
-                    OptimazedDataEdge>(optimazedGraph)
-                );
+            string optimazedCommands = pathInterpreter.Interpriate(new OptimazedDataCommadFormater(), optimazedPath);
+            string optimazedEdgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<OptimazedDataEdge>(), optimazedPath);
 
-            (string commands, string edgeOrder) = pathInterpreter.Interpriate(new DataCommandFormater(), new EdgeInfoFormater<DataEdge>(), new PathFinder<DataGraph, DataEdge>(graph));
 
             var reportBuilder = new ConsoleReportBuilder();
 
-            reportBuilder.AppendSeparator();
-            reportBuilder.AppendSymbols(map);
-
-            reportBuilder.AppendSeparator();
-            reportBuilder.AppendMap(map);
-
-            if (optimazedCommands.Equals(commands))
-            {
-                reportBuilder.AppendMessage("The commands are equals", commands);
-                reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
-                reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
-            }
-            else
-            {
-                reportBuilder.AppendMessage(nameof(commands), commands);
-                reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
-
-                reportBuilder.AppendMessage(nameof(optimazedCommands), optimazedCommands);
-                reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
-            }
+            reportBuilder.AppendMessage("The commands are equals", optimazedCommands);
+            reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
 
             reportBuilder.AppendSeparator();
 
-            Console.WriteLine(reportBuilder.GetReport());
+            Console.WriteLine(reportBuilder.Build());
         }
+
+
     }
 }
