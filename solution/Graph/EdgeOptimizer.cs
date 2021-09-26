@@ -49,17 +49,17 @@ namespace solution
 
             if (keyVertices.Contains(target))
             {
-                OptimazedDataEdge edge = CreateEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
+                OptimazedDataEdge edge = CreateOptimazedEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
                 dataEdges.Add(edge);
 
-                OptimazedDataEdge revercedEdge = CreateEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
+                OptimazedDataEdge revercedEdge = CreateOptimazedEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
                 dataEdges.Add(revercedEdge);
 
                 firstKeyVertex = null;
             }
         }
 
-        private OptimazedDataEdge CreateEdge
+        private OptimazedDataEdge CreateOptimazedEdge
             (
                 DataVertex source,
                 DataVertex target,

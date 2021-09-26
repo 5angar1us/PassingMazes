@@ -71,6 +71,6 @@ namespace solution.Report
             stringBuilder.AppendLine();
         }
 
-        public string GetReport() => stringBuilder.ToString();
+        public string Build() => stringBuilder.ToString();
     }
 }
