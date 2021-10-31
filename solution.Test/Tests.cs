@@ -1,10 +1,10 @@
 using NUnit.Framework;
-using solution.GameMap.Model;
-using solution.Graph.Model;
-using solution.Parsers;
+using PassingMazesAlgorithm.Core.GameMap.Model;
+using PassingMazesAlgorithm.Core.Graph.Model;
+using PassingMazesAlgorithm.Core.Parsers;
 using System.Text;
 
-namespace solution.Test
+namespace PassingMazesAlgorithm.Core.Test
 {
     public class Tests
     {

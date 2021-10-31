@@ -1,13 +1,13 @@
-﻿using solution.Converters;
-using solution.Graph.Model;
-using solution.GameMap.Model;
-using solution.Parsers;
-using solution.Report;
+﻿using PassingMazesAlgorithm.Core.Converters;
+using PassingMazesAlgorithm.Core.Graph.Model;
+using PassingMazesAlgorithm.Core.GameMap.Model;
+using PassingMazesAlgorithm.Core.Parsers;
+using PassingMazesAlgorithm.Core.Report;
 using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     class Program
     {
