@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace solution
 {
@@ -12,7 +10,6 @@ namespace solution
 
         public MapFormatException(string message) : base(message)
         {
-
         }
     }
 }

@@ -3,73 +3,63 @@ using solution.Graph.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution
 {
-    class OptimizedEdgeCreator
+    public class EdgeOptimizer
     {
-        private List<OptimazedDataEdge> dataEdges = new List<OptimazedDataEdge>();
-
-        private DataVertex FirstKeyVertex { set; get; }
-        private int PassedNonKeyPeaksCounter = 0;
-
-        private IEnumerable<DataVertex> KeyVertices { set; get; }
-
-        private TurnNeighborSide turnNeighbor = new TurnNeighborSide();
-
         public IEnumerable<OptimazedDataEdge> GetOptimazedDataEdges(DataGraph dataGraph, List<DataVertex> keyVertices)
         {
-            KeyVertices = keyVertices;
+            this.keyVertices = keyVertices;
 
             var dfs = new DepthFirstSearchAlgorithm<DataVertex, DataEdge>(dataGraph);
             dfs.DiscoverVertex += Dfs_DiscoverVertex;
             dfs.FinishVertex += Dfs_FinishVertex;
             dfs.TreeEdge += Dfs_TreeEdge;
-            //do the search
+
             dfs.Compute();
 
             return dataEdges;
         }
 
+        private readonly List<OptimazedDataEdge> dataEdges = new List<OptimazedDataEdge>();
+        private IEnumerable<DataVertex> keyVertices;
+       
+        private DataVertex firstKeyVertex;
+        private readonly TurnExpert turnNeighbor = new TurnExpert();
+
+        private int PassedNonKeyPeaksCounter = 0;
+
         private void Dfs_FinishVertex(DataVertex vertex)
         {
-            FirstKeyVertex = null;
-
-            //endVertexOrder.Add(@$"{vertex.Name}");
+            firstKeyVertex = null;
         }
 
         private void Dfs_TreeEdge(DataEdge e)
         {
-            var source = e.Source;
-            var target = e.Target;
-            if (KeyVertices.Contains(source) & FirstKeyVertex == null)
+            DataVertex source = e.Source;
+            DataVertex target = e.Target;
+            if (keyVertices.Contains(source) && firstKeyVertex == null)
             {
-                FirstKeyVertex = source;
+                firstKeyVertex = source;
                 PassedNonKeyPeaksCounter = 0;
-              
             }
 
             PassedNonKeyPeaksCounter++;
-            
 
-            if (KeyVertices.Contains(target))
+            if (keyVertices.Contains(target))
             {
-                var edge = CreateEdge(FirstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
+                OptimazedDataEdge edge = CreateOptimazedEdge(firstKeyVertex, target, e.NeighborSide, PassedNonKeyPeaksCounter);
                 dataEdges.Add(edge);
 
-                var revercedEdge = CreateEdge(target, FirstKeyVertex, turnNeighbor.Turn(e.NeighborSide), PassedNonKeyPeaksCounter);
+                OptimazedDataEdge revercedEdge = CreateOptimazedEdge(target, firstKeyVertex, turnNeighbor.GetOppositENeighborSide(e.NeighborSide), PassedNonKeyPeaksCounter);
                 dataEdges.Add(revercedEdge);
 
-                FirstKeyVertex = null;
+                firstKeyVertex = null;
             }
-
-            //edgeTraversalOrder.Add(@$"{e.Text}");
         }
 
-
-
-        private OptimazedDataEdge CreateEdge
+        private OptimazedDataEdge CreateOptimazedEdge
             (
                 DataVertex source,
                 DataVertex target,
@@ -87,15 +77,8 @@ namespace solution
             };
         }
 
-
-
         private void Dfs_DiscoverVertex(DataVertex vertex)
         {
-            //if (KeyVertices.Contains(vertex))
-            //{
-            //    keyVertexOrder.Add(@$"{vertex.Name}");
-            //}
-            //vertexTraversalOrder.Add(@$"{vertex.Name}");
         }
     }
 }

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using solution.GameMap.Model.MapObjects;
 
 namespace solution
 {
-    class Start : MapObject
+    public class Start : MapObject
     {
-        public Start(int i) : base('S',i)
+        public Start(int i) : base('S', i)
         {
-          
         }
 
         public Start() : base('S')
         {
-
         }
-
     }
 }

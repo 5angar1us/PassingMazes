@@ -1,17 +1,16 @@
 ﻿using solution.Graph.Model;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace solution
 {
-    public abstract class PathResultFormater <TEdge> where TEdge : DataEdge
+    public class ForeachFormater<TEdge> where TEdge : DataEdge
     {
-        protected readonly Action<StringBuilder, TEdge> func;
+        protected readonly AbstractFormater<TEdge> commandFormater;
 
-        protected PathResultFormater(Action<StringBuilder, TEdge> func)
+        public ForeachFormater(AbstractFormater<TEdge> commandFormater)
         {
-            this.func = func;
+            this.commandFormater = commandFormater;
         }
 
         public string Format(IEnumerable<TEdge> path)
@@ -19,7 +18,7 @@ namespace solution
             var sb = new StringBuilder();
 
             foreach (var edge in path)
-                func(sb, edge);
+                commandFormater.Format(sb, edge);
 
             return sb.ToString();
         }

@@ -1,23 +1,23 @@
-﻿using System;
+﻿using solution.GameMap.Model.MapObjects;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
-namespace solution
+namespace solution.GameMap.Model
 {
-    public class MyMap
+    public class Map
     {
-        const int minSize = 1;
+        public int Height { get; }
+        public int Width { get; }
 
-        public MapObject[,] Cells { private set; get; }
-
-        public int Height { private set; get; }
-        public int Width { private set; get; }
+        private const int _minSize = 1;
+        private MapObject[,] Cells { get; }
 
         public MapObject this[int height, int width]
         {
             get
             {
-                return Cells[height,width];
+                return Cells[height, width];
             }
             set
             {
@@ -25,15 +25,18 @@ namespace solution
             }
         }
 
-        public MyMap(int height, int width)
+        public Map(MapData mapData)
         {
-            if (height < minSize || width < minSize)
+            if (mapData.Height < _minSize || mapData.Width < _minSize)
                 throw new ArgumentException();
 
-            Height = height;
-            Width = width;
+            Height = mapData.Height;
+            Width = mapData.Width;
 
             Cells = new MapObject[Height, Width];
+
+            var mapObjects = mapData.MapBodySymbols.Select(x => x.Select(o => MapObjectsFactories.CreateMapObject(o)));
+            ReadMapObjects(mapObjects);
         }
 
         public void ProcessFunctionOverData(Action<int, int> func)
@@ -61,7 +64,7 @@ namespace solution
             return (-1, -1);
         }
 
-        public void InitMap(IEnumerable<IEnumerable<MapObject>> mapObjects)
+        private void ReadMapObjects(IEnumerable<IEnumerable<MapObject>> mapObjects)
         {
             var iterRows = mapObjects.GetEnumerator();
 
@@ -77,7 +80,6 @@ namespace solution
                     Cells[r, c] = iterCell.Current;
                 }
             }
-
         }
     }
 }

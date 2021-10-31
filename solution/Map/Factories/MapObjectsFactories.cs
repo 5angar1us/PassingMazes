@@ -1,17 +1,14 @@
-﻿using System;
+﻿using solution.GameMap.Model.MapObjects;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 
-namespace solution.Map
+namespace solution.GameMap
 {
-    public class MapObjectsFactories
+    public static class MapObjectsFactories
     {
-
-        public static ReadOnlyCollection<MapObjectFactory> mapObjectFactories = new List<MapObjectFactory>
+        public static ReadOnlyCollection<IMapObjectFactory> mapObjectFactories = new List<IMapObjectFactory>
         {
             new MapObjectFactory<Wall>(),
             new MapObjectFactory<Floor>(),
@@ -27,9 +24,9 @@ namespace solution.Map
         {
             for (int i = 0; i < mapObjectFactories.Count; i++)
             {
-                var x = MapObjects[i];
+                MapObject x = MapObjects[i];
 
-                if (x.EqualsBySybmol(symbol))
+                if (x.Symbol.Equals(symbol))
                     return mapObjectFactories[i].CreateObject();
             }
 

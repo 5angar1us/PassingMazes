@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+﻿using solution.GameMap.Model.MapObjects;
+using System;
 
-namespace solution.Map
+namespace solution.GameMap
 {
-    public interface MapObjectFactory
+    public class MapObjectFactory<T> : IMapObjectFactory where T : MapObject
     {
-        public MapObject CreateObject(); 
+        private int counter = 0;
+        public MapObject CreateObject() => (MapObject)Activator.CreateInstance(typeof(T), new object[] { counter++ });
     }
 }

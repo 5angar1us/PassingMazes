@@ -1,16 +1,15 @@
 ﻿using solution.Graph.Model;
-using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace solution
 {
-    public abstract class CommandFormater <TEdge> : PathResultFormater<TEdge> 
+    public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
     {
         protected static Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
 
-        protected CommandFormater(Action<StringBuilder, TEdge> func) : base (func)
+        protected AbstractFormater()
         {
             pairs.Add(ENeighborSide.Left, "L");
             pairs.Add(ENeighborSide.Top, "U");
@@ -18,6 +17,9 @@ namespace solution
             pairs.Add(ENeighborSide.Bottom, "D");
         }
 
-       
+        public virtual void Format(StringBuilder sb, TEdge edge)
+        {
+        }
+
     }
 }

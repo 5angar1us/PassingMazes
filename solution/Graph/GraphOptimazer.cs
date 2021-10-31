@@ -1,21 +1,18 @@
-﻿using QuickGraph.Algorithms.Search;
-using solution.Graph.Model;
-using System;
+﻿using solution.Graph.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace solution
 {
-    class GraphOptimazer
+    public class GraphOptimazer
     {
-        public OptimazedDataGraph Optimazi(DataGraph dataGraph)
+        public OptimazedDataGraph Optimaze(DataGraph dataGraph)
         {
-            var dataEdges = dataGraph.Edges;
-            var keyVertices = GetKeyVertices(dataEdges);
+            IEnumerable<DataEdge> dataEdges = dataGraph.Edges;
+            IEnumerable<DataVertex> keyVertices = GetKeyVertices(dataEdges);
 
-            var optimizedEdgeCreator = new OptimizedEdgeCreator();
-            var optimazedDataEdges = optimizedEdgeCreator.GetOptimazedDataEdges(dataGraph, keyVertices.ToList());
+            var edgeOptimizer = new EdgeOptimizer();
+            IEnumerable<OptimazedDataEdge> optimazedDataEdges = edgeOptimizer.GetOptimazedDataEdges(dataGraph, keyVertices.ToList());
 
             var optimazedDataGraph = new OptimazedDataGraph();
             optimazedDataGraph.AddVertexRange(keyVertices);
@@ -32,8 +29,8 @@ namespace solution
 
             var crossroads = verticesWithEdges.Where(x => x.Count() > 2);
 
-            var turnChecker = new TurnNeighborSide();
-            var turns = verticesWithEdges.Where(x => x.Count() == 2).Where(x => turnChecker.IsTurn(x));
+            var turnChecker = new TurnExpert();
+            var turns = verticesWithEdges.Where(x => x.Count() == 2 && turnChecker.IsTurn(x));
 
             var vertices = ends
                 .Union(crossroads)
@@ -42,6 +39,5 @@ namespace solution
 
             return vertices;
         }
-
     }
 }
