@@ -55,7 +55,8 @@ namespace PassingMazesAlgorithm.Core.Parsers
             return mapBody
               .Select(x =>
               {
-                  return x.Split(" ")
+                  return x.Trim()
+                   .Split(" ")
                    .Select(x => x)
                    .Select(x => char.Parse(x));
               });
