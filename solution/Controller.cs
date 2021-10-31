@@ -9,7 +9,7 @@ using System.Text;
 
 namespace solution
 {
-    public class Game
+    public class Controller
     {
         public IEnumerable<DataEdge> Run(string textMap)
         {

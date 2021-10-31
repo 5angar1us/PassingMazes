@@ -8,7 +8,7 @@ using System.Text;
 
 namespace solution
 {
-    public class OptimazedGame
+    public class OptimazedController
     {
 
         public IEnumerable<OptimazedDataEdge> Run(string textMap)

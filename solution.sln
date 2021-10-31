@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "solution", "solution\solution.csproj", "{29B4429B-7BFC-4DCF-BAC4-939CC8A63B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "solution.Test", "solution.Test\solution.Test.csproj", "{AD0EB8D3-107F-44B9-853B-FD073B714C3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "solution.Test", "solution.Test\solution.Test.csproj", "{AD0EB8D3-107F-44B9-853B-FD073B714C3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassingMazesAlgorithm.Core", "PassingMazesAlgorithm.Core\PassingMazesAlgorithm.Core.csproj", "{84188126-82D9-4FEF-BD7B-94E82BB2FEBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AD0EB8D3-107F-44B9-853B-FD073B714C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD0EB8D3-107F-44B9-853B-FD073B714C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD0EB8D3-107F-44B9-853B-FD073B714C3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84188126-82D9-4FEF-BD7B-94E82BB2FEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84188126-82D9-4FEF-BD7B-94E82BB2FEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84188126-82D9-4FEF-BD7B-94E82BB2FEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84188126-82D9-4FEF-BD7B-94E82BB2FEBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

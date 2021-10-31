@@ -27,12 +27,12 @@ namespace solution.Test
         }
 
         [Test]
-        public void EqualGame()
+        public void EqualController()
         {
-            var game = new Game();
-            var path = game.Run(maze);
+            var controller = new Controller();
+            var path = controller.Run(maze);
 
-            var optimazedGame = new OptimazedGame();
+            var optimazedGame = new OptimazedController();
             var optimazedPath = optimazedGame.Run(maze);
 
             var pathInterpreter = new PathInterpreter();

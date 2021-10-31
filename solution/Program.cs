@@ -27,8 +27,8 @@ namespace solution
 
             
 
-            var optimazedGame = new OptimazedGame();
-            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedGame.Run(maze);
+            var optimazedController = new OptimazedController();
+            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedController.Run(maze);
 
             var pathInterpreter = new PathInterpreter();
 
