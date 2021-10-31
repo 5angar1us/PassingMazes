@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using PassingMazesAlgorithm.Core.GameMap.Model;
-using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.Parsers;
 using System.Text;
 

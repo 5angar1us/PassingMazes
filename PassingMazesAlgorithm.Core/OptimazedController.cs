@@ -2,9 +2,7 @@
 using PassingMazesAlgorithm.Core.GameMap.Model;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.Parsers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace PassingMazesAlgorithm.Core
 {

@@ -1,10 +1,6 @@
-﻿using PassingMazesAlgorithm.Core.Converters;
-using PassingMazesAlgorithm.Core.Graph.Model;
-using PassingMazesAlgorithm.Core.GameMap.Model;
-using PassingMazesAlgorithm.Core.Parsers;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.Report;
 using System;
-using System.IO;
 using System.Collections.Generic;
 
 namespace PassingMazesAlgorithm.Core

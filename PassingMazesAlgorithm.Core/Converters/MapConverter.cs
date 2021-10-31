@@ -1,7 +1,6 @@
 ﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.GameMap.Model;
 using PassingMazesAlgorithm.Core.GameMap.Model.MapObjects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
