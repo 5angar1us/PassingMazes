@@ -1,10 +1,9 @@
 using NUnit.Framework;
-using solution.GameMap.Model;
-using solution.Graph.Model;
-using solution.Parsers;
+using PassingMazesAlgorithm.Core.GameMap.Model;
+using PassingMazesAlgorithm.Core.Parsers;
 using System.Text;
 
-namespace solution.Test
+namespace PassingMazesAlgorithm.Core.Test
 {
     public class Tests
     {
@@ -27,12 +26,12 @@ namespace solution.Test
         }
 
         [Test]
-        public void EqualGame()
+        public void EqualController()
         {
-            var game = new Game();
-            var path = game.Run(maze);
+            var controller = new Controller();
+            var path = controller.Run(maze);
 
-            var optimazedGame = new OptimazedGame();
+            var optimazedGame = new OptimazedController();
             var optimazedPath = optimazedGame.Run(maze);
 
             var pathInterpreter = new PathInterpreter();
@@ -40,28 +39,43 @@ namespace solution.Test
             string optimazedCommands = pathInterpreter.Interpriate(new OptimazedDataCommadFormater(), optimazedPath);
             string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
 
-            Assert.Equals(optimazedCommands, commands);
+            Assert.AreEqual(optimazedCommands, commands);
         }
 
+        [Test]
         public void EqualMap()
         {
             var parser = new MapParser(new MapFormatChecker());
             Map map = parser.Parse(maze);
             var textMap = ReadMap(map);
 
-            Assert.Equals(maze, textMap);
+            Assert.AreEqual(maze.Trim(), textMap);
         }
 
         private string ReadMap(Map map)
         {
             var sb = new StringBuilder();
+            var space = "                                          ";
+
+
+            sb.Append(map.Height)
+                .Append(" ")
+                .Append(map.Width)
+                .AppendLine()
+                .Append(space); 
+
             for (int r = 0; r < map.Height; r++)
             {
                 for (int c = 0; c < map.Width; c++)
                 {
-                    sb.Append(map[r, c].Symbol).Append(' ');
+                    sb.Append(map[r, c].Symbol);
+                    if (c != map.Width - 1)
+                        sb.Append(' ');
                 }
-                sb.AppendLine();
+                if (r != map.Height - 1)
+                    sb.AppendLine().Append(space);
+
+
             }
             return sb.ToString();
         }

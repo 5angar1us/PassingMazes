@@ -1,8 +1,7 @@
-﻿using QuickGraph;
-using solution.Graph.Model;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     public class PathInterpreter
     {

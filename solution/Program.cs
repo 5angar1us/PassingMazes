@@ -1,13 +1,9 @@
-﻿using solution.Converters;
-using solution.Graph.Model;
-using solution.GameMap.Model;
-using solution.Parsers;
-using solution.Report;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
+using PassingMazesAlgorithm.Core.Report;
 using System;
-using System.IO;
 using System.Collections.Generic;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     class Program
     {
@@ -27,8 +23,8 @@ namespace solution
 
             
 
-            var optimazedGame = new OptimazedGame();
-            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedGame.Run(maze);
+            var optimazedController = new OptimazedController();
+            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedController.Run(maze);
 
             var pathInterpreter = new PathInterpreter();
 

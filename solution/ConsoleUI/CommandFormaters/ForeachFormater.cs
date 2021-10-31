@@ -1,8 +1,8 @@
-﻿using solution.Graph.Model;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 using System.Text;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     public class ForeachFormater<TEdge> where TEdge : DataEdge
     {

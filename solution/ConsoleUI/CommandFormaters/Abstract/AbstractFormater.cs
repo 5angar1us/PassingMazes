@@ -1,13 +1,13 @@
-﻿using solution.Graph.Model;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 using System.Text;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
     {
-        protected static Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
+        protected Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
 
         protected AbstractFormater()
         {

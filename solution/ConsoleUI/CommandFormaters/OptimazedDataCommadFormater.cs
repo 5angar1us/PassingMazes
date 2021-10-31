@@ -1,7 +1,7 @@
-﻿using solution.Graph.Model;
+﻿using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Text;
 
-namespace solution
+namespace PassingMazesAlgorithm.Core
 {
     public class OptimazedDataCommadFormater : AbstractFormater<OptimazedDataEdge>
     {
