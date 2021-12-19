@@ -25,22 +25,6 @@ namespace PassingMazesAlgorithm.Core.Test
 
         }
 
-        [Test]
-        public void EqualController()
-        {
-            var controller = new Controller();
-            var path = controller.Run(maze);
-
-            var optimazedGame = new OptimazedController();
-            var optimazedPath = optimazedGame.Run(maze);
-
-            var pathInterpreter = new PathInterpreter();
-
-            string optimazedCommands = pathInterpreter.Interpriate(new OptimazedDataCommadFormater(), optimazedPath);
-            string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
-
-            Assert.AreEqual(optimazedCommands, commands);
-        }
 
         [Test]
         public void EqualMap()

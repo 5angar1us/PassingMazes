@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PassingMazesAlgorithm.Core
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
@@ -23,19 +23,19 @@ namespace PassingMazesAlgorithm.Core
 
             
 
-            var optimazedController = new OptimazedController();
-            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedController.Run(maze);
+            var controller = new Controller();
+            IEnumerable<DataEdge> path = controller.Run(maze);
 
             var pathInterpreter = new PathInterpreter();
 
-            string optimazedCommands = pathInterpreter.Interpriate(new OptimazedDataCommadFormater(), optimazedPath);
-            string optimazedEdgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<OptimazedDataEdge>(), optimazedPath);
+            string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
+            string edgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<DataEdge>(), path);
 
 
             var reportBuilder = new ConsoleReportBuilder();
 
-            reportBuilder.AppendMessage("The commands are equals", optimazedCommands);
-            reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
+            reportBuilder.AppendMessage("The commands are equals", commands);
+            reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
 
             reportBuilder.AppendSeparator();
 
