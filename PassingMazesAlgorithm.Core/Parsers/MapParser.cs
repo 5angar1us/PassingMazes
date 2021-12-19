@@ -7,7 +7,6 @@ namespace PassingMazesAlgorithm.Core.Parsers
 {
     public class MapParser
     {
-
         private MapFormatChecker _formatChecker;
 
         private const int _minMapSize = 10;
@@ -58,7 +57,7 @@ namespace PassingMazesAlgorithm.Core.Parsers
                   return x.Trim()
                    .Split(" ")
                    .Select(x => x)
-                   .Select(x => char.Parse(x));
+                   .Select(char.Parse);
               });
         }
 

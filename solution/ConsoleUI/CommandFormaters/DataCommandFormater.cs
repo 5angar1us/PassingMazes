@@ -7,7 +7,7 @@ namespace PassingMazesAlgorithm.Core
     {
         public override void Format(StringBuilder sb, DataEdge edge)
         {
-            sb.Append(pairs[edge.NeighborSide]);
+            sb.Append(_pairs[edge.NeighborSide]);
         }
     }
 }

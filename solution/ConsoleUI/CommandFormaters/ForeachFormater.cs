@@ -6,11 +6,11 @@ namespace PassingMazesAlgorithm.Core
 {
     public class ForeachFormater<TEdge> where TEdge : DataEdge
     {
-        protected readonly AbstractFormater<TEdge> commandFormater;
+        protected readonly AbstractFormater<TEdge> _commandFormater;
 
         public ForeachFormater(AbstractFormater<TEdge> commandFormater)
         {
-            this.commandFormater = commandFormater;
+            _commandFormater = commandFormater;
         }
 
         public string Format(IEnumerable<TEdge> path)
@@ -18,7 +18,7 @@ namespace PassingMazesAlgorithm.Core
             var sb = new StringBuilder();
 
             foreach (var edge in path)
-                commandFormater.Format(sb, edge);
+                _commandFormater.Format(sb, edge);
 
             return sb.ToString();
         }

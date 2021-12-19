@@ -7,14 +7,14 @@ namespace PassingMazesAlgorithm.Core
     public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
     {
-        protected Dictionary<ENeighborSide, string> pairs = new Dictionary<ENeighborSide, string>();
+        protected Dictionary<ENeighborSide, string> _pairs = new Dictionary<ENeighborSide, string>();
 
         protected AbstractFormater()
         {
-            pairs.Add(ENeighborSide.Left, "L");
-            pairs.Add(ENeighborSide.Top, "U");
-            pairs.Add(ENeighborSide.Right, "R");
-            pairs.Add(ENeighborSide.Bottom, "D");
+            _pairs.Add(ENeighborSide.Left, "L");
+            _pairs.Add(ENeighborSide.Top, "U");
+            _pairs.Add(ENeighborSide.Right, "R");
+            _pairs.Add(ENeighborSide.Bottom, "D");
         }
 
         public virtual void Format(StringBuilder sb, TEdge edge)

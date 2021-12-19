@@ -44,8 +44,8 @@ namespace PassingMazesAlgorithm.Core.Parsers
             var columnBorderIndeces = new int[] { 0, mapData.Width - 1 };
 
             var indexedСells = mapData.MapBodySymbols
-                .Select((mapObjectSymbol, rowIndex) => (mapObjectSymbol: mapObjectSymbol, rowIndex: rowIndex))
-                .Select(x => x.mapObjectSymbol.Select((mapObjectSymbol, columnIndex) => (mapObjectSymbol, x.rowIndex, columnIndex)))
+                .Select((row, rowIndex) => ( row, rowIndex))
+                .Select(x => x.row.Select((char cellSymbol, int columnIndex) => (cellSymbol, x.rowIndex, columnIndex)))
                 .SelectMany(x => x);
 
             var rowBorderCells = indexedСells.Where(x => rowBorderIndeces.Contains(x.rowIndex));
@@ -53,7 +53,7 @@ namespace PassingMazesAlgorithm.Core.Parsers
 
             return rowBorderCells
                 .Union(columnBorderCells)
-                .Select(x => x.mapObjectSymbol);
+                .Select(x => x.cellSymbol);
         }
 
         private bool IsMapBodyValid(IEnumerable<IEnumerable<char>> mapSymbols)
@@ -62,7 +62,7 @@ namespace PassingMazesAlgorithm.Core.Parsers
                             .SelectMany(x => x)
                             .Distinct();
 
-            return uniqueMapSymbols.Any(x => !MapObjectsFactories.MapObjectsSymbols.Contains(x));
+            return uniqueMapSymbols.Any(x => !MapObjectsFactory.MapObjectsSymbols.Contains(x));
         }
     }
 }

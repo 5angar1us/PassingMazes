@@ -42,14 +42,16 @@ namespace PassingMazesAlgorithm.Core.Converters
         private IEnumerable<DataEdge> CreateEdges(Map map, IEnumerable<DataVertex> vertices)
         {
             return vertices
-                .Select(vertex =>
-                {
-                    (int row, int column) = map.IndexOfCellByName(vertex.Name);
-                    IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData = GetNeihborsObjectData(map, row, column);
-                    IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = GetNeighborVertexcesData(vertices, neighborsData);
-                    return CreateVertexEdges(vertex, neighborVertexcesData);
-                })
+                .Select(vertex => CreateEdge(map, vertex, vertices))
                 .SelectMany(x => x);
+        }
+
+        private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex vertex, IEnumerable<DataVertex> vertices)
+        {
+            (int row, int column) = map.IndexOfCellByName(vertex.Name);
+            IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData = GetNeihborsObjectData(map, row, column);
+            IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = GetNeighborVertexcesData(vertices, neighborsData);
+            return CreateVertexEdges(vertex, neighborVertexcesData);
         }
 
         private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(Map map, int row, int column)
@@ -82,7 +84,11 @@ namespace PassingMazesAlgorithm.Core.Converters
                 DataVertex target = x.neighborVertex;
 
                 string textFormat = $"{source.Name}->{target.Name}";
-                return new DataEdge(source, target) { Text = textFormat, NeighborSide = x.neighborSide };
+                return new DataEdge(source, target) 
+                { 
+                    Text = textFormat,
+                    NeighborSide = x.neighborSide
+                };
             });
         }
 
