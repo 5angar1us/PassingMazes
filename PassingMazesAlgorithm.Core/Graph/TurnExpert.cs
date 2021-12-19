@@ -24,19 +24,6 @@ namespace PassingMazesAlgorithm.Core
            list.ForEach(x => OppositePairs.Add(x.Value, x.Key));
         }
 
-        public bool IsTurn(IGrouping<DataVertex, DataEdge> x)
-        {
-            var list = x.ToList();
-
-            if (list.Count != 2)
-                throw new ArgumentException();
-
-            var firstSide = list[0].NeighborSide;
-            var secondSide = list[1].NeighborSide;
-
-            return TurnPairs[firstSide] == secondSide || TurnPairs[secondSide] == firstSide;
-        }
-
         public ENeighborSide GetOppositENeighborSide(ENeighborSide ENeighborSide)
         {
             return OppositePairs[ENeighborSide];
