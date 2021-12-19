@@ -1,15 +1,18 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
-using PassingMazesAlgorithm.Core.Report;
-using System;
+﻿using PassingMazesAlgorithm.ConsoleApp.UI;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report;
+using PassingMazesAlgorithm.Core;
+using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
+using System;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.ConsoleApp
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
-            var maze = @"   10 10
+            var sourceMaze = @"   10 10
                             X X X X X X X X X X
                             X S . . . . . . . X
                             X X X X X . X X X X
@@ -21,27 +24,23 @@ namespace PassingMazesAlgorithm.Core
                             X . . . X . . . Q X
                             X X X X X X X X X X";
 
-            
-
-            var optimazedController = new OptimazedController();
-            IEnumerable<OptimazedDataEdge> optimazedPath = optimazedController.Run(maze);
+            var maze = new Maze();
+            IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
 
             var pathInterpreter = new PathInterpreter();
 
-            string optimazedCommands = pathInterpreter.Interpriate(new OptimazedDataCommadFormater(), optimazedPath);
-            string optimazedEdgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<OptimazedDataEdge>(), optimazedPath);
-
+            string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
+            string edgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<DataEdge>(), path);
 
             var reportBuilder = new ConsoleReportBuilder();
 
-            reportBuilder.AppendMessage("The commands are equals", optimazedCommands);
-            reportBuilder.AppendMessage(nameof(optimazedEdgeOrder), optimazedEdgeOrder);
+            reportBuilder.AppendMessage("The commands", commands);
+            reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
 
             reportBuilder.AppendSeparator();
 
             Console.WriteLine(reportBuilder.Build());
         }
-
 
     }
 }

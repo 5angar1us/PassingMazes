@@ -1,13 +1,17 @@
 ﻿using PassingMazesAlgorithm.Core.Graph.Model;
-using PassingMazesAlgorithm.Core.GameMap.Model;
-using PassingMazesAlgorithm.Core.GameMap.Model.MapObjects;
+using PassingMazesAlgorithm.Core.MazeMap.Model;
+using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 using System.Collections.Generic;
 using System.Linq;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Converters
 {
     internal class MapConverter
     {
+        private List<IDataNearestIndices> _nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
+
         public DataGraph ToGraph(Map map)
         {
             var dataGraph = new DataGraph();
@@ -26,15 +30,13 @@ namespace PassingMazesAlgorithm.Core.Converters
             var vertices = new List<DataVertex>();
             var wall = new Wall();
 
-            for (int row = 1; row < map.Height - 1; row++)
+            map.ProcessFunctionOverNotWallData((row, column) =>
             {
-                for (int column = 1; column < map.Width - 1; column++)
-                {
-                    MapObject elem = map[row, column];
-                    if (elem.Symbol.Equals(wall.Symbol) == false)
-                        vertices.Add(new DataVertex(elem.Symbol, elem.Name));
-                }
-            }
+                MapObject elem = map[row, column];
+
+                if (elem.Symbol.Equals(wall.Symbol) == false)
+                    vertices.Add(new DataVertex(elem.Symbol, elem.Name));
+            });
 
             return vertices;
         }
@@ -42,48 +44,29 @@ namespace PassingMazesAlgorithm.Core.Converters
         private IEnumerable<DataEdge> CreateEdges(Map map, IEnumerable<DataVertex> vertices)
         {
             return vertices
-                .Select(vertex =>
-                {
-                    (int row, int column) = map.IndexOfCellByName(vertex.Name);
-                    IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData = GetNeihborsObjectData(map, row, column);
-                    IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = GetNeighborVertexcesData(vertices, neighborsData);
-                    return CreateVertexEdges(vertex, neighborVertexcesData);
-                })
+                .Select(vertex => CreateEdge(map, vertex, vertices))
                 .SelectMany(x => x);
         }
 
-        private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(Map map, int row, int column)
+        private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
         {
-            var nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
-            return nearestIndiceConvertors.ConvertAll(x =>
+            (int row, int column) = map.IndexOf(sourceVertex.Name);
+
+            IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = _nearestIndiceConvertors
+                .Select(nearestIndice => (indices: nearestIndice.GetNeighborIndices(row, column), neighborSide: nearestIndice.NeighborSide))
+                .Select(neighbor => (map[neighbor.indices].Name, neighbor.neighborSide))
+                .Join(
+                    vertices,
+                    neighbornData => neighbornData.Name,
+                    vertex => vertex.Name,
+                    (neighbornData,  vertex) => (vertex, neighbornData.neighborSide));
+
+            IEnumerable<DataEdge> edges = neighborVertexcesData.Select(neighborVertexcData =>
             {
-                (int newRow, int newColumn) = x.GetNeighborIndices(row, column);
-                return (map[newRow, newColumn], x.NeighborSide);
+                (DataVertex targetVertex, ENeighborSide neighborSide) = neighborVertexcData;
+                return new DataEdge(sourceVertex, targetVertex, neighborSide);
             });
-        }
-
-        private IEnumerable<(DataVertex, ENeighborSide neighborSide)> GetNeighborVertexcesData
-            (
-                IEnumerable<DataVertex> vertices,
-                IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData
-            )
-        {
-            return vertices.Join(
-                 neighborsData,
-                 vertice => vertice.Name,
-                 neighbornData => neighbornData.mapObject.Name,
-                 (vertice, neighbornData) => (vertex: vertice, neighborVertex: neighbornData.neighborSide));
-        }
-
-        private IEnumerable<DataEdge> CreateVertexEdges(DataVertex source, IEnumerable<(DataVertex neighborVertex, ENeighborSide neighborSide)> neighborVertexces)
-        {
-            return neighborVertexces.Select(x =>
-            {
-                DataVertex target = x.neighborVertex;
-
-                string textFormat = $"{source.Name}->{target.Name}";
-                return new DataEdge(source, target) { Text = textFormat, NeighborSide = x.neighborSide };
-            });
+            return edges;
         }
 
 

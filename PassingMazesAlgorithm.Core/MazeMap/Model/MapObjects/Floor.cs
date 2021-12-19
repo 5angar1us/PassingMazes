@@ -1,4 +1,4 @@
-﻿namespace PassingMazesAlgorithm.Core.GameMap.Model.MapObjects
+﻿namespace PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects
 {
     class Floor : MapObject
     {

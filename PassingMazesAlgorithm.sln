@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassingMazesAlgorithm.ConsoleUI", "solution\PassingMazesAlgorithm.ConsoleUI.csproj", "{29B4429B-7BFC-4DCF-BAC4-939CC8A63B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassingMazesAlgorithm.ConsoleApp", "solution\PassingMazesAlgorithm.ConsoleApp.csproj", "{29B4429B-7BFC-4DCF-BAC4-939CC8A63B12}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassingMazesAlgorithm.Test", "solution.Test\PassingMazesAlgorithm.Test.csproj", "{AD0EB8D3-107F-44B9-853B-FD073B714C3C}"
 EndProject

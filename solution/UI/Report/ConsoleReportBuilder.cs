@@ -1,16 +1,16 @@
-﻿using PassingMazesAlgorithm.Core.GameMap.Model;
+﻿using PassingMazesAlgorithm.Core.MazeMap.Model;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Core.Report
+namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
 {
     public class ConsoleReportBuilder
     {
-        private readonly StringBuilder stringBuilder = new StringBuilder();
+        private readonly StringBuilder _sb = new StringBuilder();
 
         public void AppendMessage(string title, string commands)
         {
             AppendSeparator();
-            stringBuilder.Append($"{title} : {commands}").Append(' ').AppendLine();
+            _sb.Append($"{title} : {commands}").Append(' ').AppendLine();
         }
 
         public void AppendSymbols(Map map)
@@ -19,9 +19,9 @@ namespace PassingMazesAlgorithm.Core.Report
             {
                 for (int c = 0; c < map.Width; c++)
                 {
-                    stringBuilder.Append(map[r, c].Symbol).Append(' ');
+                    _sb.Append(map[r, c].Symbol).Append(' ');
                 }
-                stringBuilder.AppendLine();
+                _sb.AppendLine();
             }
         }
 
@@ -29,7 +29,7 @@ namespace PassingMazesAlgorithm.Core.Report
         {
             var maxNameLenght = -1;
 
-            map.ProcessFunctionOverData((r, c) =>
+            map.ProcessFunctionOverAllData((r, c) =>
             {
                 var name = map[r, c].Name;
 
@@ -50,9 +50,9 @@ namespace PassingMazesAlgorithm.Core.Report
                         var count = nameMessageLenght - name.Length;
                         AppendSpace(count);
                     }
-                    stringBuilder.Append(name);
+                    _sb.Append(name);
                 }
-                stringBuilder.AppendLine();
+                _sb.AppendLine();
             }
         }
 
@@ -60,17 +60,17 @@ namespace PassingMazesAlgorithm.Core.Report
         {
             for (int x = 0; x < count; x++)
             {
-                stringBuilder.Append(" ");
+                _sb.Append(" ");
             }
         }
 
         public void AppendSeparator()
         {
-            stringBuilder.AppendLine();
-            stringBuilder.AppendLine("===== ===== =====");
-            stringBuilder.AppendLine();
+            _sb.AppendLine();
+            _sb.AppendLine("===== ===== =====");
+            _sb.AppendLine();
         }
 
-        public string Build() => stringBuilder.ToString();
+        public string Build() => _sb.ToString();
     }
 }

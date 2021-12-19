@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PassingMazesAlgorithm.Core.GameMap.Model.MapObjects
+namespace PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects
 {
     public abstract class MapObject
     {

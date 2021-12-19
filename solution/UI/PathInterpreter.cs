@@ -1,7 +1,9 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
+﻿using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
+using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.ConsoleApp.UI
 {
     public class PathInterpreter
     {

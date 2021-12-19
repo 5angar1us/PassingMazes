@@ -1,9 +1,8 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
-using System;
+﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.Core.Graph
 {
     public class TurnExpert
     {
@@ -20,21 +19,8 @@ namespace PassingMazesAlgorithm.Core
             OppositePairs.Add(ENeighborSide.Left, ENeighborSide.Right);
             OppositePairs.Add(ENeighborSide.Top, ENeighborSide.Bottom);
 
-           var list = OppositePairs.ToList();
-           list.ForEach(x => OppositePairs.Add(x.Value, x.Key));
-        }
-
-        public bool IsTurn(IGrouping<DataVertex, DataEdge> x)
-        {
-            var list = x.ToList();
-
-            if (list.Count != 2)
-                throw new ArgumentException();
-
-            var firstSide = list[0].NeighborSide;
-            var secondSide = list[1].NeighborSide;
-
-            return TurnPairs[firstSide] == secondSide || TurnPairs[secondSide] == firstSide;
+           var otherOppositePairs = OppositePairs.ToList();
+           otherOppositePairs.ForEach(x => OppositePairs.Add(x.Value, x.Key));
         }
 
         public ENeighborSide GetOppositENeighborSide(ENeighborSide ENeighborSide)

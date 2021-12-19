@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
+using System.Collections.Generic;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.Core.NearestIndicesConverters
 {
     internal static class NearestIndexConvertersFactory
     {
         static NearestIndexConvertersFactory()
         {
-            NearestIndiceConvertors = new List<DataNearestIndices>()
+            NearestIndiceConvertors = new List<IDataNearestIndices>()
             {
                 new LeftNearestIndices(),
                 new TopNearestIndices(),
@@ -15,7 +16,7 @@ namespace PassingMazesAlgorithm.Core
             };
         }
 
-        public static IEnumerable<DataNearestIndices> NearestIndiceConvertors { get; }
+        public static IEnumerable<IDataNearestIndices> NearestIndiceConvertors { get; }
     }
 }
 
