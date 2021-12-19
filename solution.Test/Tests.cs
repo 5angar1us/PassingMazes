@@ -7,7 +7,7 @@ namespace PassingMazesAlgorithm.Core.Test
 {
     public class Tests
     {
-        private readonly string maze = @" 10 10
+        private readonly string sourceMaze = @" 10 10
                                           X X X X X X X X X X
                                           X S . . . . . . . X
                                           X X X X X . X X X X
@@ -30,10 +30,10 @@ namespace PassingMazesAlgorithm.Core.Test
         public void EqualMap()
         {
             var parser = new MapParser(new MapFormatChecker());
-            Map map = parser.Parse(maze);
+            Map map = parser.Parse(sourceMaze);
             var textMap = ReadMap(map);
 
-            Assert.AreEqual(maze.Trim(), textMap);
+            Assert.AreEqual(sourceMaze.Trim(), textMap);
         }
 
         private string ReadMap(Map map)
@@ -48,15 +48,15 @@ namespace PassingMazesAlgorithm.Core.Test
                 .AppendLine()
                 .Append(space); 
 
-            for (int r = 0; r < map.Height; r++)
+            for (int row = 0; row < map.Height; row++)
             {
-                for (int c = 0; c < map.Width; c++)
+                for (int column = 0; column < map.Width; column++)
                 {
-                    sb.Append(map[r, c].Symbol);
-                    if (c != map.Width - 1)
+                    sb.Append(map[row, column].Symbol);
+                    if (column != map.Width - 1)
                         sb.Append(' ');
                 }
-                if (r != map.Height - 1)
+                if (row != map.Height - 1)
                     sb.AppendLine().Append(space);
 
 
