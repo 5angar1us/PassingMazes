@@ -1,8 +1,9 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
+﻿using PassingMazesAlgorithm.Core;
+using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters.Abstract
 {
     public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
