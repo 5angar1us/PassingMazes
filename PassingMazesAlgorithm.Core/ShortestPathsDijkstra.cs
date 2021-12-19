@@ -7,36 +7,29 @@ using System.Linq;
 
 namespace PassingMazesAlgorithm.Core
 {
-    public class PathFinder<TGraph, TEdge>
+    public class ShortestPathsDijkstra<TGraph, TEdge>
        where TGraph : BidirectionalGraph<DataVertex, TEdge>
        where TEdge : DataEdge
     {
-        private readonly TGraph dataGraph;
-        private readonly Func<TEdge, double> edgeCost = e => 1; // constant cost
+        private readonly Func<TEdge, double> _edgeCost = e => 1;
 
-        public PathFinder(TGraph dataGraph)
+        public ShortestPathsDijkstra()
         {
-            this.dataGraph = dataGraph;
         }
 
-        public IEnumerable<TEdge> Find()
-
+        public IEnumerable<TEdge> Find(TGraph dataGraph)
         {
             var vertices = dataGraph.Vertices;
 
             var root = GetVertexBySymbol(vertices, new Start().Symbol);
             var target = GetVertexBySymbol(vertices, new Quit().Symbol);
 
-            // compute shortest paths
-            var tryGetPaths = dataGraph.ShortestPathsDijkstra(edgeCost, root);
+            var tryGetPaths = dataGraph.ShortestPathsDijkstra(_edgeCost, root);
 
             tryGetPaths(target, out IEnumerable<TEdge> path);
             return path;
         }
 
-        private DataVertex GetVertexBySymbol(IEnumerable<DataVertex> vertices, char symbol)
-        {
-            return vertices.First(x => x.Symbol == symbol);
-        }
+        private DataVertex GetVertexBySymbol(IEnumerable<DataVertex> vertices, char symbol) => vertices.First(x => x.Symbol == symbol);
     }
 }
