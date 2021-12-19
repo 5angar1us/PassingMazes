@@ -22,9 +22,7 @@ namespace PassingMazesAlgorithm.Core.Test
         [SetUp]
         public void Setup()
         {
-
         }
-
 
         [Test]
         public void EqualMap()
@@ -54,12 +52,11 @@ namespace PassingMazesAlgorithm.Core.Test
             var sb = new StringBuilder();
             var space = "                                          ";
 
-
             sb.Append(map.Height)
                 .Append(" ")
                 .Append(map.Width)
                 .AppendLine()
-                .Append(space); 
+                .Append(space);
 
             for (int row = 0; row < map.Height; row++)
             {
@@ -72,10 +69,8 @@ namespace PassingMazesAlgorithm.Core.Test
                 if (row != map.Height - 1)
                     sb.AppendLine().Append(space);
 
-
             }
             return sb.ToString();
         }
-
     }
 }

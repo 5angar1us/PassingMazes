@@ -5,7 +5,7 @@ namespace PassingMazesAlgorithm.Core.Report
 {
     public class ConsoleReportBuilder
     {
-        private readonly StringBuilder _sb = new StringBuilder(); 
+        private readonly StringBuilder _sb = new StringBuilder();
 
         public void AppendMessage(string title, string commands)
         {
@@ -27,7 +27,6 @@ namespace PassingMazesAlgorithm.Core.Report
 
         public void AppendMap(Map map)
         {
-            
             var maxNameLenght = -1;
 
             map.ProcessFunctionOverAllData((r, c) =>

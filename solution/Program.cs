@@ -21,8 +21,6 @@ namespace PassingMazesAlgorithm.Core
                             X . . . X . . . Q X
                             X X X X X X X X X X";
 
-            
-
             var maze = new Maze();
             IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
 
@@ -31,10 +29,8 @@ namespace PassingMazesAlgorithm.Core
             string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
             string edgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<DataEdge>(), path);
 
-
             var reportBuilder = new ConsoleReportBuilder();
 
-           
             reportBuilder.AppendMessage("The commands are equals", commands);
             reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
 
@@ -42,7 +38,6 @@ namespace PassingMazesAlgorithm.Core
 
             Console.WriteLine(reportBuilder.Build());
         }
-
 
     }
 }

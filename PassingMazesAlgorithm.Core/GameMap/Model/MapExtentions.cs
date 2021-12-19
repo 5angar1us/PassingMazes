@@ -12,12 +12,12 @@ namespace PassingMazesAlgorithm.Core.GameMap.Model
 
         private static void ProcessFunctionOverData
             (
-            Action<int> beforeRowFunc, 
-            Action<int, int> columnFunc, 
-            Action<int> afterRowFunc, 
-            int startRowIndex, 
-            int endRowIndex, 
-            int startColumnIndex, 
+            Action<int> beforeRowFunc,
+            Action<int, int> columnFunc,
+            Action<int> afterRowFunc,
+            int startRowIndex,
+            int endRowIndex,
+            int startColumnIndex,
             int endColumnIndex )
         {
             for (var row = startRowIndex; row < endRowIndex; row++)

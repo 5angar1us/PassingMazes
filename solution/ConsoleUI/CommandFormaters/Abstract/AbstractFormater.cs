@@ -20,6 +20,5 @@ namespace PassingMazesAlgorithm.Core
         public virtual void Format(StringBuilder sb, TEdge edge)
         {
         }
-
     }
 }

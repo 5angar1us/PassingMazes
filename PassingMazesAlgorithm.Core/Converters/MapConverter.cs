@@ -33,8 +33,6 @@ namespace PassingMazesAlgorithm.Core.Converters
                     vertices.Add(new DataVertex(elem.Symbol, elem.Name));
             });
 
-            
-
             return vertices;
         }
 
@@ -83,14 +81,13 @@ namespace PassingMazesAlgorithm.Core.Converters
                 DataVertex target = x.neighborVertex;
 
                 string textFormat = $"{source.Name}->{target.Name}";
-                return new DataEdge(source, target) 
-                { 
+                return new DataEdge(source, target)
+                {
                     Text = textFormat,
                     NeighborSide = x.neighborSide
                 };
             });
         }
-
 
     }
 }

@@ -39,7 +39,6 @@ namespace PassingMazesAlgorithm.Core.GameMap.Model
             ReadMapObjects(mapObjects);
         }
 
-       
         private void ReadMapObjects(IEnumerable<IEnumerable<MapObject>> mapObjects)
         {
             var iterRows = mapObjects.GetEnumerator();

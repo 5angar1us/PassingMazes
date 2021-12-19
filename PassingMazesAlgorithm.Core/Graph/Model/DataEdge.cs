@@ -22,6 +22,5 @@ namespace PassingMazesAlgorithm.Core.Graph.Model
         {
             return Text;
         }
-       
     }
 }
