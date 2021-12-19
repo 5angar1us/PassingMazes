@@ -9,7 +9,7 @@ namespace PassingMazesAlgorithm.Core
     {
         static void Main(string[] args)
         {
-            var maze = @"   10 10
+            var sourceMaze = @"   10 10
                             X X X X X X X X X X
                             X S . . . . . . . X
                             X X X X X . X X X X
@@ -23,8 +23,8 @@ namespace PassingMazesAlgorithm.Core
 
             
 
-            var controller = new Controller();
-            IEnumerable<DataEdge> path = controller.Run(maze);
+            var maze = new Maze();
+            IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
 
             var pathInterpreter = new PathInterpreter();
 
@@ -34,6 +34,7 @@ namespace PassingMazesAlgorithm.Core
 
             var reportBuilder = new ConsoleReportBuilder();
 
+           
             reportBuilder.AppendMessage("The commands are equals", commands);
             reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
 

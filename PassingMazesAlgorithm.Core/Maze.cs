@@ -6,20 +6,19 @@ using System.Collections.Generic;
 
 namespace PassingMazesAlgorithm.Core
 {
-    public class Controller
+    public class Maze
     {
-        public IEnumerable<DataEdge> Run(string textMap)
+        private MapParser parser = new MapParser(new MapFormatChecker());
+        private MapConverter mapConverter = new MapConverter();
+
+        public IEnumerable<DataEdge> FindWay(string textMap)
         {
-            var parser = new MapParser(new MapFormatChecker());
             Map map = parser.Parse(textMap);
 
-            var mapConverter = new MapConverter();
             DataGraph graph = mapConverter.ToGraph(map);
 
-
-            var pathFinder = new PathFinder<DataGraph, DataEdge>(graph);
-            IEnumerable<DataEdge> path = pathFinder.Find();
-            return path;
+            var pathfindingAlgorithm = new ShortestPathsDijkstra<DataGraph, DataEdge>();
+            return pathfindingAlgorithm.Find(graph);
         }
     }
 }
