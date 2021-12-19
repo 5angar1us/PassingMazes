@@ -1,9 +1,9 @@
-﻿using PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters.Abstract;
+﻿using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters
+namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
 {
     public class ForeachFormater<TEdge> where TEdge : DataEdge
     {

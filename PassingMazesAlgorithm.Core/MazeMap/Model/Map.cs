@@ -1,9 +1,10 @@
-﻿using PassingMazesAlgorithm.Core.GameMap.Model.MapObjects;
+﻿using PassingMazesAlgorithm.Core.MazeMap.Factories;
+using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PassingMazesAlgorithm.Core.GameMap.Model
+namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
     public class Map
     {

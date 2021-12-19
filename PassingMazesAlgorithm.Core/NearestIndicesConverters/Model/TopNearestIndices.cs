@@ -1,8 +1,10 @@
-﻿namespace PassingMazesAlgorithm.Core
+﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
+
+namespace PassingMazesAlgorithm.Core.NearestIndicesConverters.Model
 {
-    class TopNearestIndices : DataNearestIndices
+    class TopNearestIndices : IDataNearestIndices
     {
         public ENeighborSide NeighborSide { get; } = ENeighborSide.Top;
-        public (int r, int c) GetNeighborIndices(int r, int c) => (r - 1, c);
+        public (int row, int column) GetNeighborIndices(int row, int column) => (row - 1, column);
     }
 }

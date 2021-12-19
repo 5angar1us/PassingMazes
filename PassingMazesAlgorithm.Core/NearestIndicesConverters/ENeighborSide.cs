@@ -1,4 +1,4 @@
-﻿namespace PassingMazesAlgorithm.Core
+﻿namespace PassingMazesAlgorithm.Core.NearestIndicesConverters
 {
     public enum ENeighborSide
     {

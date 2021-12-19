@@ -1,4 +1,4 @@
-﻿using PassingMazesAlgorithm.Core.GameMap.Model.MapObjects;
+﻿using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 
 namespace PassingMazesAlgorithm.Core
 {

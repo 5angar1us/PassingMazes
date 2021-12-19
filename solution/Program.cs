@@ -1,9 +1,12 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
-using PassingMazesAlgorithm.Core.Report;
-using System;
+﻿using PassingMazesAlgorithm.ConsoleApp.UI;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report;
+using PassingMazesAlgorithm.Core;
+using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
+using System;
 
-namespace PassingMazesAlgorithm.Core
+namespace PassingMazesAlgorithm.ConsoleApp
 {
     static class Program
     {

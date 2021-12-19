@@ -1,4 +1,5 @@
 ﻿using GraphX.Common.Models;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Graph.Model
 {

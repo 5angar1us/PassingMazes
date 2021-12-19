@@ -1,6 +1,6 @@
-﻿namespace PassingMazesAlgorithm.Core
+﻿namespace PassingMazesAlgorithm.Core.NearestIndicesConverters.Model
 {
-    interface DataNearestIndices
+    interface IDataNearestIndices
     {
         ENeighborSide NeighborSide { get; }
         (int row, int column) GetNeighborIndices(int row, int column);

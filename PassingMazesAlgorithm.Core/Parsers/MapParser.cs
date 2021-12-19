@@ -1,4 +1,4 @@
-﻿using PassingMazesAlgorithm.Core.GameMap.Model;
+﻿using PassingMazesAlgorithm.Core.MazeMap.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

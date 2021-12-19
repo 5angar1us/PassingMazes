@@ -1,8 +1,8 @@
-﻿using PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters.Abstract;
+﻿using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters
+namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
 {
     public class DataCommandFormater : AbstractFormater<DataEdge>
     {

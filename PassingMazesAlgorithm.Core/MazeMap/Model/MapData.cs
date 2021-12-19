@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PassingMazesAlgorithm.Core.GameMap.Model
+namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
     public class MapData
     {

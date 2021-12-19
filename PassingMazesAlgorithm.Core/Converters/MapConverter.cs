@@ -1,8 +1,10 @@
 ﻿using PassingMazesAlgorithm.Core.Graph.Model;
-using PassingMazesAlgorithm.Core.GameMap.Model;
-using PassingMazesAlgorithm.Core.GameMap.Model.MapObjects;
+using PassingMazesAlgorithm.Core.MazeMap.Model;
+using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 using System.Collections.Generic;
 using System.Linq;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Converters
 {

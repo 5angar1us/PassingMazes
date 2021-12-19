@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PassingMazesAlgorithm.Core.GameMap.Model
+namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
     public static class MapExtentions
     {

@@ -1,7 +1,7 @@
-﻿using PassingMazesAlgorithm.Core.GameMap.Model;
+﻿using PassingMazesAlgorithm.Core.MazeMap.Model;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters.Report
+namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
 {
     public class ConsoleReportBuilder
     {

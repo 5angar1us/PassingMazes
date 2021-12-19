@@ -1,9 +1,10 @@
 ﻿using PassingMazesAlgorithm.Core;
 using PassingMazesAlgorithm.Core.Graph.Model;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PassingMazesAlgorithm.Console.UI.ConsoleCommandFormaters.Abstract
+namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract
 {
     public abstract class AbstractFormater<TEdge>
         where TEdge : DataEdge
