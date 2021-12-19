@@ -36,6 +36,19 @@ namespace PassingMazesAlgorithm.Core.Test
             Assert.AreEqual(sourceMaze.Trim(), textMap);
         }
 
+        [Test]
+        public void EqualRoute()
+        {
+            var maze = new Maze();
+            var path = maze.FindWay(sourceMaze);
+            var pathInterpreter = new PathInterpreter();
+
+            string actualRouteCommand = pathInterpreter.Interpriate(new DataCommandFormater(), path);
+            const string expectedRouteCommand = "RRRRDDLLDDRRDDDRRR";
+
+            Assert.AreEqual(expectedRouteCommand, actualRouteCommand);
+        }
+
         private string ReadMap(Map map)
         {
             var sb = new StringBuilder();
