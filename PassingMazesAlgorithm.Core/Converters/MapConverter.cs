@@ -8,6 +8,8 @@ namespace PassingMazesAlgorithm.Core.Converters
 {
     internal class MapConverter
     {
+        private List<DataNearestIndices> _nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
+
         public DataGraph ToGraph(Map map)
         {
             var dataGraph = new DataGraph();
@@ -29,6 +31,7 @@ namespace PassingMazesAlgorithm.Core.Converters
             map.ProcessFunctionOverNotWallData((row, column) =>
             {
                 MapObject elem = map[row, column];
+
                 if (elem.Symbol.Equals(wall.Symbol) == false)
                     vertices.Add(new DataVertex(elem.Symbol, elem.Name));
             });
@@ -43,51 +46,27 @@ namespace PassingMazesAlgorithm.Core.Converters
                 .SelectMany(x => x);
         }
 
-        private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex vertex, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
         {
-            (int row, int column) = map.IndexOfCellByName(vertex.Name);
-            IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData = GetNeihborsObjectData(map, row, column);
-            IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = GetNeighborVertexcesData(vertices, neighborsData);
-            return CreateVertexEdges(vertex, neighborVertexcesData);
-        }
+            (int row, int column) = map.IndexOf(sourceVertex.Name);
 
-        private IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> GetNeihborsObjectData(Map map, int row, int column)
-        {
-            var nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
-            return nearestIndiceConvertors.ConvertAll(x =>
+            IEnumerable<(DataVertex, ENeighborSide neighborSide)> neighborVertexcesData = _nearestIndiceConvertors
+                .Select(nearestIndice => (indices: nearestIndice.GetNeighborIndices(row, column), neighborSide: nearestIndice.NeighborSide))
+                .Select(neighbor => (map[neighbor.indices].Name, neighbor.neighborSide))
+                .Join(
+                    vertices,
+                    neighbornData => neighbornData.Name,
+                    vertex => vertex.Name,
+                    (neighbornData,  vertex) => (vertex, neighbornData.neighborSide));
+
+            IEnumerable<DataEdge> edges = neighborVertexcesData.Select(neighborVertexcData =>
             {
-                (int newRow, int newColumn) = x.GetNeighborIndices(row, column);
-                return (map[newRow, newColumn], x.NeighborSide);
+                (DataVertex targetVertex, ENeighborSide neighborSide) = neighborVertexcData;
+                return new DataEdge(sourceVertex, targetVertex, neighborSide);
             });
+            return edges;
         }
 
-        private IEnumerable<(DataVertex, ENeighborSide neighborSide)> GetNeighborVertexcesData
-            (
-                IEnumerable<DataVertex> vertices,
-                IEnumerable<(MapObject mapObject, ENeighborSide neighborSide)> neighborsData
-            )
-        {
-            return vertices.Join(
-                 neighborsData,
-                 vertice => vertice.Name,
-                 neighbornData => neighbornData.mapObject.Name,
-                 (vertice, neighbornData) => (vertex: vertice, neighborVertex: neighbornData.neighborSide));
-        }
-
-        private IEnumerable<DataEdge> CreateVertexEdges(DataVertex source, IEnumerable<(DataVertex neighborVertex, ENeighborSide neighborSide)> neighborVertexces)
-        {
-            return neighborVertexces.Select(x =>
-            {
-                DataVertex target = x.neighborVertex;
-
-                string textFormat = $"{source.Name}->{target.Name}";
-                return new DataEdge(source, target)
-                {
-                    Text = textFormat,
-                    NeighborSide = x.neighborSide
-                };
-            });
-        }
 
     }
 }

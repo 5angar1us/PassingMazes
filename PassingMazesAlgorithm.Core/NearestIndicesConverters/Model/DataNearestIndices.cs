@@ -3,6 +3,6 @@
     interface DataNearestIndices
     {
         ENeighborSide NeighborSide { get; }
-        (int r, int c) GetNeighborIndices(int r, int c);
+        (int row, int column) GetNeighborIndices(int row, int column);
     }
 }

@@ -25,6 +25,18 @@ namespace PassingMazesAlgorithm.Core.GameMap.Model
             }
         }
 
+        public MapObject this[(int height, int width) tuple]
+        {
+            get
+            {
+                return _Cells[tuple.height, tuple.width];
+            }
+            set
+            {
+                _Cells[tuple.height, tuple.width] = value;
+            }
+        }
+
         public Map(MapData mapData)
         {
             if (mapData.Height < _minSize || mapData.Width < _minSize)

@@ -31,7 +31,7 @@ namespace PassingMazesAlgorithm.Core
 
             var reportBuilder = new ConsoleReportBuilder();
 
-            reportBuilder.AppendMessage("The commands are equals", commands);
+            reportBuilder.AppendMessage("The commands", commands);
             reportBuilder.AppendMessage(nameof(edgeOrder), edgeOrder);
 
             reportBuilder.AppendSeparator();

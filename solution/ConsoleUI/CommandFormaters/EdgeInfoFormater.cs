@@ -8,7 +8,7 @@ namespace PassingMazesAlgorithm.Core
     {
         public override void Format(StringBuilder sb, TEdge edge)
         {
-            sb.Append(edge.Text).Append(' ');
+            sb.Append(edge).Append(' ');
         }
     }
 }

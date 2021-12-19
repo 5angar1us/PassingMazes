@@ -91,7 +91,7 @@ namespace PassingMazesAlgorithm.Core.GameMap.Model
             map.ProcessFunctionOverAllData(_emptyAction, columnFunc, afterRowFunc);
         }
 
-        public static (int r, int c) IndexOfCellByName(this Map map, string name)
+        public static (int r, int c) IndexOf(this Map map, string name)
         {
             for (int i = 0; i < map.Height; i++)
             {
