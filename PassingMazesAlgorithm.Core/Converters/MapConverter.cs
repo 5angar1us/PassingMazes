@@ -26,15 +26,14 @@ namespace PassingMazesAlgorithm.Core.Converters
             var vertices = new List<DataVertex>();
             var wall = new Wall();
 
-            for (int row = 1; row < map.Height - 1; row++)
+            map.ProcessFunctionOverNotWallData((row, column) =>
             {
-                for (int column = 1; column < map.Width - 1; column++)
-                {
-                    MapObject elem = map[row, column];
-                    if (elem.Symbol.Equals(wall.Symbol) == false)
-                        vertices.Add(new DataVertex(elem.Symbol, elem.Name));
-                }
-            }
+                MapObject elem = map[row, column];
+                if (elem.Symbol.Equals(wall.Symbol) == false)
+                    vertices.Add(new DataVertex(elem.Symbol, elem.Name));
+            });
+
+            
 
             return vertices;
         }
