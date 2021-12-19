@@ -10,7 +10,7 @@ namespace PassingMazesAlgorithm.Core.Converters
 {
     internal class MapConverter
     {
-        private List<DataNearestIndices> _nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
+        private List<IDataNearestIndices> _nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
 
         public DataGraph ToGraph(Map map)
         {
