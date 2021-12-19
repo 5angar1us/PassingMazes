@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace PassingMazesAlgorithm.ConsoleApp.UI
 {
-    public class PathInterpreter
+    public class PathHandler
     {
-        public string Interpriate<TEdge>(AbstractFormater<TEdge> formater, IEnumerable<TEdge> path)
+        public string Run<TEdge>(AbstractFormater<TEdge> formater, IEnumerable<TEdge> path)
 
              where TEdge : DataEdge
         {

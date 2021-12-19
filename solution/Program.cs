@@ -27,10 +27,10 @@ namespace PassingMazesAlgorithm.ConsoleApp
             var maze = new Maze();
             IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
 
-            var pathInterpreter = new PathInterpreter();
+            var pathHandler = new PathHandler();
 
-            string commands = pathInterpreter.Interpriate(new DataCommandFormater(), path);
-            string edgeOrder = pathInterpreter.Interpriate(new EdgeInfoFormater<DataEdge>(), path);
+            string commands = pathHandler.Run(new DataCommandFormater(), path);
+            string edgeOrder = pathHandler.Run(new EdgeInfoFormater<DataEdge>(), path);
 
             var reportBuilder = new ConsoleReportBuilder();
 

@@ -41,9 +41,9 @@ namespace PassingMazesAlgorithm.Core.Test
         {
             var maze = new Maze();
             var path = maze.FindWay(sourceMaze);
-            var pathInterpreter = new PathInterpreter();
+            var pathInterpreter = new PathHandler();
 
-            string actualRouteCommand = pathInterpreter.Interpriate(new DataCommandFormater(), path);
+            string actualRouteCommand = pathInterpreter.Run(new DataCommandFormater(), path);
             const string expectedRouteCommand = "RRRRDDLLDDRRDDDRRR";
 
             Assert.AreEqual(expectedRouteCommand, actualRouteCommand);
