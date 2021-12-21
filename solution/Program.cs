@@ -5,6 +5,9 @@ using PassingMazesAlgorithm.Core;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using System.Collections.Generic;
 using System;
+using PassingMazesAlgorithm.Core.Converters;
+using PassingMazesAlgorithm.Core.Parsers;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.ConsoleApp
 {
@@ -24,7 +27,7 @@ namespace PassingMazesAlgorithm.ConsoleApp
                             X . . . X . . . Q X
                             X X X X X X X X X X";
 
-            var maze = new Maze();
+            var maze = new Maze(new MapParser(new MapFormatChecker()), new MapConverter(new NearestIndexConvertersFactory()));
             IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
 
             var pathHandler = new PathHandler();

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PassingMazesAlgorithm.Core.NearestIndicesConverters
 {
-    internal static class NearestIndexConvertersFactory
+    public class NearestIndexConvertersFactory
     {
-        static NearestIndexConvertersFactory()
+        public NearestIndexConvertersFactory()
         {
             NearestIndiceConvertors = new List<IDataNearestIndices>()
             {
@@ -16,7 +16,7 @@ namespace PassingMazesAlgorithm.Core.NearestIndicesConverters
             };
         }
 
-        public static IEnumerable<IDataNearestIndices> NearestIndiceConvertors { get; }
+        public IEnumerable<IDataNearestIndices> NearestIndiceConvertors { get; }
     }
 }
 

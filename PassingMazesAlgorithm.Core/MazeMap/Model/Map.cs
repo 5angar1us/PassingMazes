@@ -8,6 +8,7 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
     public class Map
     {
+ 
         public int Height { get; }
         public int Width { get; }
 

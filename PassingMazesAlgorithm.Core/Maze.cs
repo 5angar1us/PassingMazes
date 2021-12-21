@@ -8,14 +8,20 @@ namespace PassingMazesAlgorithm.Core
 {
     public class Maze
     {
-        private MapParser parser = new MapParser(new MapFormatChecker());
-        private MapConverter mapConverter = new MapConverter();
+        private MapParser _parser ;
+        private MapConverter _mapConverter;
+
+        public Maze(MapParser parser, MapConverter mapConverter)
+        {
+            this._parser = parser;
+            this._mapConverter = mapConverter;
+        }
 
         public IEnumerable<DataEdge> FindWay(string textMap)
         {
-            Map map = parser.Parse(textMap);
+            Map map = _parser.Parse(textMap);
 
-            DataGraph graph = mapConverter.ToGraph(map);
+            DataGraph graph = _mapConverter.ToGraph(map);
 
             var pathfindingAlgorithm = new ShortestPathsDijkstra<DataGraph, DataEdge>();
             return pathfindingAlgorithm.Find(graph);

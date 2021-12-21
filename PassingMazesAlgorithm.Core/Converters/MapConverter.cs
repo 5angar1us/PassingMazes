@@ -8,9 +8,14 @@ using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Converters
 {
-    internal class MapConverter
+    public class MapConverter
     {
-        private List<IDataNearestIndices> _nearestIndiceConvertors = NearestIndexConvertersFactory.NearestIndiceConvertors.ToList();
+        private NearestIndexConvertersFactory _nearestIndexConvertersFactory;
+
+        public MapConverter(NearestIndexConvertersFactory nearestIndexConvertersFactory)
+        {
+            _nearestIndexConvertersFactory = nearestIndexConvertersFactory;
+        }
 
         public DataGraph ToGraph(Map map)
         {
