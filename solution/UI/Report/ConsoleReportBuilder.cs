@@ -39,21 +39,22 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
 
             var nameMessageLenght = maxNameLenght + 1;
 
-            for (int r = 0; r < map.Height; r++)
+            map.ProcessFunctionOverAllData((r, c) =>
             {
-                for (int c = 0; c < map.Width; c++)
-                {
-                    var name = $"{ map[r, c].Name }";
+                var name = $"{ map[r, c].Name }";
 
-                    if (name.Length < nameMessageLenght)
-                    {
-                        var count = nameMessageLenght - name.Length;
-                        AppendSpace(count);
-                    }
-                    _sb.Append(name);
+                if (name.Length < nameMessageLenght)
+                {
+                    var count = nameMessageLenght - name.Length;
+                    AppendSpace(count);
                 }
+                _sb.Append(name);
+            }, 
+            (r) =>
+            {
                 _sb.AppendLine();
-            }
+            });
+
         }
 
         private void AppendSpace(int count)
