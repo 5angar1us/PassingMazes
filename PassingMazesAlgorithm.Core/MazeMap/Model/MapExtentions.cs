@@ -4,7 +4,7 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
     public static class MapExtentions
     {
-        private static Action<int> _emptyAction = (row) => { };
+        private static readonly Action<int> _emptyAction = (row) => { };
 
         private static void ProcessFunctionOverData
             (
@@ -16,10 +16,10 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
             int startColumnIndex,
             int endColumnIndex)
         {
-            for (var row = startRowIndex; row < endRowIndex; row++)
+            for (int row = startRowIndex; row < endRowIndex; row++)
             {
                 beforeRowFunc(row);
-                for (var column = startColumnIndex; column < endColumnIndex; column++)
+                for (int column = startColumnIndex; column < endColumnIndex; column++)
                 {
                     columnFunc(row, column);
                 }
@@ -93,7 +93,7 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
             {
                 for (int j = 0; j < map.Width; j++)
                 {
-                    var el = map[i, j];
+                    MapObjects.MapObject el = map[i, j];
                     if (el.Name.Equals(name))
                         return (i, j);
                 }

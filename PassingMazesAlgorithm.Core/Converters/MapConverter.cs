@@ -9,7 +9,7 @@ namespace PassingMazesAlgorithm.Core.Converters
 {
     public class MapConverter
     {
-        private NearestIndexConvertersFactory _nearestIndexConvertersFactory = new NearestIndexConvertersFactory();
+        private readonly NearestIndexConvertersFactory _nearestIndexConvertersFactory = new NearestIndexConvertersFactory();
 
         public MapConverter()
         {
@@ -56,13 +56,13 @@ namespace PassingMazesAlgorithm.Core.Converters
         {
             (int row, int column) = map.IndexOf(sourceVertex.Name);
 
-            var indicesNeighborVertexces = _nearestIndexConvertersFactory.NearestIndiceConvertors
+            IEnumerable<((int row, int column) indices, ENeighborSide neighborSide)> indicesNeighborVertexces = _nearestIndexConvertersFactory.NearestIndiceConvertors
                 .Select(nearestIndice =>
                 {
                     return (indices: nearestIndice.GetNeighborIndices(row, column), neighborSide: nearestIndice.NeighborSide);
                 });
 
-            var neighborVertexces = indicesNeighborVertexces
+            IEnumerable<(DataVertex vertex, ENeighborSide neighborSide)> neighborVertexces = indicesNeighborVertexces
                .Select(neighbor =>
                {
                    return (map[neighbor.indices].Name, neighbor.neighborSide);
@@ -73,7 +73,7 @@ namespace PassingMazesAlgorithm.Core.Converters
                     vertex => vertex.Name,
                     (neighbornData, vertex) => (vertex, neighbornData.neighborSide));
 
-            var edges = neighborVertexces.Select(neighborVertex =>
+            IEnumerable<DataEdge> edges = neighborVertexces.Select(neighborVertex =>
             {
                 (DataVertex targetVertex, ENeighborSide neighborSide) = neighborVertex;
                 return new DataEdge(sourceVertex, targetVertex, neighborSide);

@@ -14,12 +14,12 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
 
         public MapDimensionsParser(MapDimensionsToken mapDimensions)
         {
-            if (int.TryParse(mapDimensions.Width, out var width))
+            if (int.TryParse(mapDimensions.Width, out int width))
             {
                 Width = width;
             }
 
-            if (int.TryParse(mapDimensions.Height, out var height))
+            if (int.TryParse(mapDimensions.Height, out int height))
             {
                 Height = height;
             }
@@ -33,6 +33,6 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
             }
         }
 
-        private int mMinSize = 4;
+        private readonly int mMinSize = 4;
     }
 }

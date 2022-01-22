@@ -57,16 +57,16 @@ namespace PassingMazesAlgorithm.Core.Reader.Validators
 
         private IEnumerable<char> GetborderObjectSymbols(IEnumerable<IEnumerable<MapObject>> mapObjects)
         {
-            var rowBorderIndeces = new int[] { 0, mapDimensions.Height - 1 };
-            var columnBorderIndeces = new int[] { 0, mapDimensions.Width - 1 };
+            int[] rowBorderIndeces = new int[] { 0, mapDimensions.Height - 1 };
+            int[] columnBorderIndeces = new int[] { 0, mapDimensions.Width - 1 };
 
-            var indexedСells = mapObjects
+            IEnumerable<(char cellSymbol, int rowIndex, int columnIndex)> indexedСells = mapObjects
                 .Select((row, rowIndex) => (row, rowIndex))
                 .Select(x => x.row.Select((MapObject item, int columnIndex) => (cellSymbol: item.Symbol, x.rowIndex, columnIndex)))
                 .SelectMany(x => x);
 
-            var rowBorderCells = indexedСells.Where(x => rowBorderIndeces.Contains(x.rowIndex));
-            var columnBorderCells = indexedСells.Where(x => columnBorderIndeces.Contains(x.columnIndex));
+            IEnumerable<(char cellSymbol, int rowIndex, int columnIndex)> rowBorderCells = indexedСells.Where(x => rowBorderIndeces.Contains(x.rowIndex));
+            IEnumerable<(char cellSymbol, int rowIndex, int columnIndex)> columnBorderCells = indexedСells.Where(x => columnBorderIndeces.Contains(x.columnIndex));
 
             return rowBorderCells
                 .Union(columnBorderCells)

@@ -27,25 +27,25 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
 
         public void AppendMap(Maze map)
         {
-            var maxNameLenght = -1;
+            int maxNameLenght = -1;
 
             map.ProcessFunctionOverAllData((r, c) =>
             {
-                var name = map[r, c].Name;
+                string name = map[r, c].Name;
 
                 if (name.Length > maxNameLenght)
                     maxNameLenght = name.Length;
             });
 
-            var nameMessageLenght = maxNameLenght + 1;
+            int nameMessageLenght = maxNameLenght + 1;
 
             map.ProcessFunctionOverAllData((r, c) =>
             {
-                var name = $"{ map[r, c].Name }";
+                string name = $"{ map[r, c].Name }";
 
                 if (name.Length < nameMessageLenght)
                 {
-                    var count = nameMessageLenght - name.Length;
+                    int count = nameMessageLenght - name.Length;
                     AppendSpace(count);
                 }
                 _sb.Append(name);

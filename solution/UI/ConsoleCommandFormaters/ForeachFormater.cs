@@ -18,7 +18,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
         {
             var sb = new StringBuilder();
 
-            foreach (var edge in path)
+            foreach (TEdge edge in path)
                 _commandFormater.Format(sb, edge);
 
             return sb.ToString();

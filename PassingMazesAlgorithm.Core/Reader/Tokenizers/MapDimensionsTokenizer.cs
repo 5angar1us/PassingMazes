@@ -16,7 +16,7 @@
 
         public MapDimensionsTokenizer(string line)
         {
-            var firstSpace = line.IndexOf(" ");
+            int firstSpace = line.IndexOf(" ");
 
             Width = line.Substring(0, firstSpace);
             Height = line.Substring(firstSpace + 1);

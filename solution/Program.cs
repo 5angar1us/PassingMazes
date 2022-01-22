@@ -7,7 +7,7 @@ using PassingMazesAlgorithm.Core;
 using PassingMazesAlgorithm.Core.Converters;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.MazeMap.Model;
-using PassingMazesAlgorithm.Core.Reader.Tokenizers;
+using PassingMazesAlgorithm.Core.Reader;
 
 namespace PassingMazesAlgorithm.ConsoleApp
 {
@@ -15,7 +15,7 @@ namespace PassingMazesAlgorithm.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var mapReader = new MapReader(args[0]);
+            var mapReader = new MapFileReader(args[0]);
 
             Maze maze = mapReader.Read();
 

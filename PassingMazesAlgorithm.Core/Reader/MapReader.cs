@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using PassingMazesAlgorithm.Core.MazeMap.Model;
 using PassingMazesAlgorithm.Core.Reader.Parsers;
+using PassingMazesAlgorithm.Core.Reader.Tokenizers;
 
-namespace PassingMazesAlgorithm.Core.Reader.Tokenizers
+namespace PassingMazesAlgorithm.Core.Reader
 {
     public class MapReader
     {

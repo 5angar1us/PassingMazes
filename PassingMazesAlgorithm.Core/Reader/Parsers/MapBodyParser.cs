@@ -11,11 +11,11 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
         public MapBodyParser(IEnumerable<IEnumerable<string>> values)
         {
 
-            var mapObjectParseResult = values.Select(row =>
+            IEnumerable<IEnumerable<(bool isValid, MapObject mapObject)>> mapObjectParseResult = values.Select(row =>
             {
                 return row.Select(symbol =>
                  {
-                     var isValid = MapObject.TryParse(symbol, out var mapObject);
+                     bool isValid = MapObject.TryParse(symbol, out MapObject mapObject);
                      return (isValid, mapObject);
                  });
             });
@@ -35,13 +35,15 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
                     return item.mapObject;
                 });
             });
+
+            isValidObjects = isValidObjects.ToList();
         }
 
         public bool IsValid
         {
             get
             {
-                var isAllParsed = isValidObjects.SelectMany(x => x).All(x => x == true);
+                bool isAllParsed = isValidObjects.SelectMany(x => x).All(x => x == true);
                 return isAllParsed;
             }
         }

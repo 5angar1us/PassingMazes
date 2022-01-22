@@ -18,8 +18,8 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
 
         public Maze Parse(MapTokens map)
         {
-            var mapDimensions = ParseDimensions(map.MapDimensions);
-            var mapBody = ParseMapBody(map.MapBodyValues);
+            MapDimensions mapDimensions = ParseDimensions(map.MapDimensions);
+            IEnumerable<IEnumerable<MapObject>> mapBody = ParseMapBody(map.MapBodyValues);
 
 
             MapValidator mapValidator = new MapValidator();

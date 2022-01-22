@@ -9,9 +9,9 @@ namespace PassingMazesAlgorithm.Core.Reader.Tokenizers
     {
         public MapTokens ReadMapTokens(StreamReader stream)
         {
-            var mapDimensions = ReadMapDimensions(stream);
+            MapDimensionsToken mapDimensions = ReadMapDimensions(stream);
 
-            var mapBodyValues = ReadMapBody(stream);
+            IEnumerable<IEnumerable<string>> mapBodyValues = ReadMapBody(stream);
 
             return new MapTokens(mapDimensions, mapBodyValues);
         }
@@ -19,7 +19,7 @@ namespace PassingMazesAlgorithm.Core.Reader.Tokenizers
 
         private IEnumerable<IEnumerable<string>> ReadMapBody(StreamReader stream)
         {
-            var values = stream.ReadToEnd();
+            string values = stream.ReadToEnd();
 
             var mapBodyTokenizing = new MapBodyTokenizer(values);
 
@@ -28,7 +28,7 @@ namespace PassingMazesAlgorithm.Core.Reader.Tokenizers
 
         private MapDimensionsToken ReadMapDimensions(StreamReader stream)
         {
-            var currentLine = stream.ReadLine();
+            string currentLine = stream.ReadLine();
             var mapDimensionsParsing = new MapDimensionsTokenizer(currentLine);
 
             return new MapDimensionsToken(mapDimensionsParsing.Dimensions);

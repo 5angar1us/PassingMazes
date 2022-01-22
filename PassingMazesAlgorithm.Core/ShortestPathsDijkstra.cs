@@ -16,13 +16,13 @@ namespace PassingMazesAlgorithm.Core
         public IEnumerable<TEdge> Find(TGraph dataGraph)
 
         {
-            var vertices = dataGraph.Vertices;
+            IEnumerable<DataVertex> vertices = dataGraph.Vertices;
 
-            var root = GetVertexBySymbol(vertices, new Start().Symbol);
-            var target = GetVertexBySymbol(vertices, new Quit().Symbol);
+            DataVertex root = GetVertexBySymbol(vertices, new Start().Symbol);
+            DataVertex target = GetVertexBySymbol(vertices, new Quit().Symbol);
 
             // compute shortest paths
-            var tryGetPaths = dataGraph.ShortestPathsDijkstra(_edgeCost, root);
+            TryFunc<DataVertex, IEnumerable<TEdge>> tryGetPaths = dataGraph.ShortestPathsDijkstra(_edgeCost, root);
 
             tryGetPaths(target, out IEnumerable<TEdge> path);
             return path;

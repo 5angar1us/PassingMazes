@@ -53,12 +53,12 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
 
         private void ReadMapObjects(IEnumerable<IEnumerable<MapObject>> mapObjects)
         {
-            var iterRows = mapObjects.GetEnumerator();
+            IEnumerator<IEnumerable<MapObject>> iterRows = mapObjects.GetEnumerator();
 
             for (int row = 0; row < _Cells.GetLength(0); row++)
             {
                 iterRows.MoveNext();
-                var iterCell = iterRows.Current.GetEnumerator();
+                IEnumerator<MapObject> iterCell = iterRows.Current.GetEnumerator();
 
                 for (int cell = 0; cell < _Cells.GetLength(1); cell++)
                 {
