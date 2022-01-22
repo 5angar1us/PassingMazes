@@ -39,7 +39,9 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects
 
             if (symbol == null && symbol.Length == 0) return false;
 
-            return TryParse(symbol, out mapObject);
+
+
+            return TryParse(symbol[0], out mapObject);
         }
 
         public static bool TryParse(char symbol, out MapObject mapObject)

@@ -46,7 +46,7 @@ namespace PassingMazesAlgorithm.Core.Reader.Parsers
         private IEnumerable<IEnumerable<MapObject>> ParseMapBody(IEnumerable<IEnumerable<string>> values)
         {
             var mapBodyParsing = new MapBodyParser(values);
-            if (mapBodyParsing.IsValid)
+            if (!mapBodyParsing.IsValid)
             {
                 throw new Exception("Invalid map body");
             }

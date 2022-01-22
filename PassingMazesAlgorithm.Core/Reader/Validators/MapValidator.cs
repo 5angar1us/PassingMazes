@@ -28,13 +28,13 @@ namespace PassingMazesAlgorithm.Core.Reader.Validators
 
         private bool IsHeightCurrect()
         {
-            return mapObjects.Count() != mapDimensions.Height;
+            return mapObjects.Count() == mapDimensions.Height;
             //throw new MapFormatException("The number of lines of the map body does not match the specified");
         }
 
         private bool IsWidthCurrect()
         {
-            return mapObjects.Any(x => x.Count() != mapDimensions.Width);
+            return mapObjects.Any(x => x.Count() == mapDimensions.Width);
 
             //var indeсes = mapObjects
             //    .Select((symbols, index) => new { symbols, index })
@@ -49,10 +49,10 @@ namespace PassingMazesAlgorithm.Core.Reader.Validators
         {
             IEnumerable<char> borderObjectSymbols = GetborderObjectSymbols(mapObjects);
 
-            var wallSymbol = new Wall().Symbol;
+            char wallSymbol = new Wall().Symbol;
             //throw new MapFormatException("Map border is not closed");
 
-            return borderObjectSymbols.Any(x => !x.Equals(wallSymbol));
+            return borderObjectSymbols.All(x => x.Equals(wallSymbol));
         }
 
         private IEnumerable<char> GetborderObjectSymbols(IEnumerable<IEnumerable<MapObject>> mapObjects)
