@@ -1,6 +1,6 @@
-﻿using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
+﻿using System.Text;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
 using PassingMazesAlgorithm.Core.Graph.Model;
-using System.Text;
 
 namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
 {

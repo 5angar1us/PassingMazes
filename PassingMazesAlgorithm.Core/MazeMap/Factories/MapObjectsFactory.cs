@@ -1,8 +1,7 @@
-﻿using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 
 namespace PassingMazesAlgorithm.Core.MazeMap.Factories
 {
@@ -27,17 +26,21 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Factories
 
 
 
-        static public MapObject CreateMapObject(char symbol)
+        static public bool TryCreateMapObject(char symbol, out MapObject mapObject)
         {
             for (int i = 0; i < mapObjectFactories.Count; i++)
             {
                 MapObject x = MapObjects[i];
 
                 if (x.Symbol.Equals(symbol))
-                    return mapObjectFactories[i].CreateObject();
-            }
+                {
+                    mapObject = mapObjectFactories[i].CreateObject();
+                    return true;
+                }
 
-            throw new ArgumentException("Invalid character of map object");
+            }
+            mapObject = null;
+            return false;
         }
     }
 }

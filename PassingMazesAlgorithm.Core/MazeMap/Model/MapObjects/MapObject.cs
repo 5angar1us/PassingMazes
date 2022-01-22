@@ -1,4 +1,5 @@
 ﻿using System;
+using PassingMazesAlgorithm.Core.MazeMap.Factories;
 
 namespace PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects
 {
@@ -28,6 +29,24 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects
         public override int GetHashCode()
         {
             return HashCode.Combine(Name, Symbol);
+        }
+
+        public static bool TryParse(string symbol, out MapObject mapObject)
+        {
+            mapObject = null;
+
+            symbol = symbol.Trim();
+
+            if (symbol == null && symbol.Length == 0) return false;
+
+
+
+            return TryParse(symbol[0], out mapObject);
+        }
+
+        public static bool TryParse(char symbol, out MapObject mapObject)
+        {
+            return MapObjectsFactory.TryCreateMapObject(symbol, out mapObject);
         }
     }
 }

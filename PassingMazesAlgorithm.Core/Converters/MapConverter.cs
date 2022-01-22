@@ -1,23 +1,22 @@
-﻿using PassingMazesAlgorithm.Core.Graph.Model;
+﻿using System.Collections.Generic;
+using System.Linq;
+using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.MazeMap.Model;
 using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
-using System.Collections.Generic;
-using System.Linq;
-using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
 using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Converters
 {
     public class MapConverter
     {
-        private NearestIndexConvertersFactory _nearestIndexConvertersFactory;
+        private readonly NearestIndexConvertersFactory _nearestIndexConvertersFactory = new NearestIndexConvertersFactory();
 
-        public MapConverter(NearestIndexConvertersFactory nearestIndexConvertersFactory)
+        public MapConverter()
         {
-            _nearestIndexConvertersFactory = nearestIndexConvertersFactory;
+
         }
 
-        public DataGraph ToGraph(Map map)
+        public DataGraph ToGraph(Maze map)
         {
             var dataGraph = new DataGraph();
 
@@ -30,7 +29,7 @@ namespace PassingMazesAlgorithm.Core.Converters
             return dataGraph;
         }
 
-        private IEnumerable<DataVertex> CreateVertices(Map map)
+        private IEnumerable<DataVertex> CreateVertices(Maze map)
         {
             var vertices = new List<DataVertex>();
             var wall = new Wall();
@@ -46,24 +45,24 @@ namespace PassingMazesAlgorithm.Core.Converters
             return vertices;
         }
 
-        private IEnumerable<DataEdge> CreateEdges(Map map, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdges(Maze map, IEnumerable<DataVertex> vertices)
         {
             return vertices
                 .Select(vertex => CreateEdge(map, vertex, vertices))
                 .SelectMany(x => x);
         }
 
-        private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdge(Maze map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
         {
             (int row, int column) = map.IndexOf(sourceVertex.Name);
 
-            var indicesNeighborVertexces = _nearestIndexConvertersFactory.NearestIndiceConvertors
+            IEnumerable<((int row, int column) indices, ENeighborSide neighborSide)> indicesNeighborVertexces = _nearestIndexConvertersFactory.NearestIndiceConvertors
                 .Select(nearestIndice =>
                 {
                     return (indices: nearestIndice.GetNeighborIndices(row, column), neighborSide: nearestIndice.NeighborSide);
                 });
 
-            var neighborVertexces = indicesNeighborVertexces
+            IEnumerable<(DataVertex vertex, ENeighborSide neighborSide)> neighborVertexces = indicesNeighborVertexces
                .Select(neighbor =>
                {
                    return (map[neighbor.indices].Name, neighbor.neighborSide);
@@ -79,6 +78,7 @@ namespace PassingMazesAlgorithm.Core.Converters
                 (DataVertex targetVertex, ENeighborSide neighborSide) = neighborVertex;
                 return new DataEdge(sourceVertex, targetVertex, neighborSide);
             });
+
             return edges;
         }
 

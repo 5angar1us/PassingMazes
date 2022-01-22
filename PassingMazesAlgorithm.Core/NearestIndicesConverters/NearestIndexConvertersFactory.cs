@@ -1,5 +1,5 @@
-﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
 
 namespace PassingMazesAlgorithm.Core.NearestIndicesConverters
 {

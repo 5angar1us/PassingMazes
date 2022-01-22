@@ -1,7 +1,7 @@
-﻿using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
-using PassingMazesAlgorithm.Core.Graph.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
+using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract;
+using PassingMazesAlgorithm.Core.Graph.Model;
 
 namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
 {
@@ -18,7 +18,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters
         {
             var sb = new StringBuilder();
 
-            foreach (var edge in path)
+            foreach (TEdge edge in path)
                 _commandFormater.Format(sb, edge);
 
             return sb.ToString();

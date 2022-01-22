@@ -1,5 +1,5 @@
-﻿using GraphX.Common.Models;
-using System;
+﻿using System;
+using GraphX.Common.Models;
 
 namespace PassingMazesAlgorithm.Core.Graph.Model
 {

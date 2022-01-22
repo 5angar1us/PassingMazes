@@ -1,5 +1,5 @@
-﻿using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
-using System;
+﻿using System;
+using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
 
 namespace PassingMazesAlgorithm.Core.MazeMap.Factories
 {

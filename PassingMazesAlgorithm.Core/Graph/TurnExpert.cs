@@ -1,6 +1,6 @@
-﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using PassingMazesAlgorithm.Core.NearestIndicesConverters;
 
 namespace PassingMazesAlgorithm.Core.Graph
 {
@@ -19,8 +19,8 @@ namespace PassingMazesAlgorithm.Core.Graph
             OppositePairs.Add(ENeighborSide.Left, ENeighborSide.Right);
             OppositePairs.Add(ENeighborSide.Top, ENeighborSide.Bottom);
 
-           var otherOppositePairs = OppositePairs.ToList();
-           otherOppositePairs.ForEach(x => OppositePairs.Add(x.Value, x.Key));
+            var otherOppositePairs = OppositePairs.ToList();
+            otherOppositePairs.ForEach(x => OppositePairs.Add(x.Value, x.Key));
         }
 
         public ENeighborSide GetOppositENeighborSide(ENeighborSide ENeighborSide)
