@@ -14,6 +14,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
         }
 
         public void AppendSymbols(Map map)
+        public void AppendSymbols(Maze map)
         {
             for (int r = 0; r < map.Height; r++)
             {
@@ -26,6 +27,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
         }
 
         public void AppendMap(Map map)
+        public void AppendMap(Maze map)
         {
             var maxNameLenght = -1;
 
@@ -50,6 +52,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report
                 }
                 _sb.Append(name);
             }, 
+            },
             (r) =>
             {
                 _sb.AppendLine();

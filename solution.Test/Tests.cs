@@ -31,6 +31,7 @@ namespace PassingMazesAlgorithm.Core.Test
         {
             var parser = new MapParser(new MapFormatChecker());
             Map map = parser.Parse(sourceMaze);
+            Maze map = parser.Parse(sourceMaze);
             var textMap = ReadMap(map);
 
             Assert.AreEqual(sourceMaze.Trim(), textMap);
@@ -50,6 +51,7 @@ namespace PassingMazesAlgorithm.Core.Test
         }
 
         private string ReadMap(Map map)
+        private string ReadMap(Maze map)
         {
             var sb = new StringBuilder();
             var space = "                                          ";

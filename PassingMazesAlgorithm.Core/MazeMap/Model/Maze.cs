@@ -1,18 +1,15 @@
-﻿using PassingMazesAlgorithm.Core.MazeMap.Factories;
+﻿using System.Collections.Generic;
 using PassingMazesAlgorithm.Core.MazeMap.Model.MapObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using PassingMazesAlgorithm.Core.Reader.Parsers.Models;
 
 namespace PassingMazesAlgorithm.Core.MazeMap.Model
 {
-    public class Map
+    public class Maze
     {
- 
+
         public int Height { get; }
         public int Width { get; }
 
-        private const int _minSize = 1;
         private MapObject[,] _Cells { get; }
 
         public MapObject this[int height, int width]
@@ -39,17 +36,18 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
             }
         }
 
-        public Map(MapData mapData)
+        public Maze()
         {
-            if (mapData.Height < _minSize || mapData.Width < _minSize)
-                throw new ArgumentException();
 
-            Height = mapData.Height;
-            Width = mapData.Width;
+        }
+
+        public Maze(IEnumerable<IEnumerable<MapObject>> mapObjects, MapDimensions mapDimensions)
+        {
+            Height = mapDimensions.Height;
+            Width = mapDimensions.Width;
 
             _Cells = new MapObject[Height, Width];
 
-            var mapObjects = mapData.MapBodySymbols.Select(row => row.Select(cellSymbol => MapObjectsFactory.CreateMapObject(cellSymbol)));
             ReadMapObjects(mapObjects);
         }
 
@@ -57,16 +55,16 @@ namespace PassingMazesAlgorithm.Core.MazeMap.Model
         {
             var iterRows = mapObjects.GetEnumerator();
 
-            for (int r = 0; r < _Cells.GetLength(0); r++)
+            for (int row = 0; row < _Cells.GetLength(0); row++)
             {
                 iterRows.MoveNext();
                 var iterCell = iterRows.Current.GetEnumerator();
 
-                for (int c = 0; c < _Cells.GetLength(1); c++)
+                for (int cell = 0; cell < _Cells.GetLength(1); cell++)
                 {
                     iterCell.MoveNext();
 
-                    _Cells[r, c] = iterCell.Current;
+                    _Cells[row, cell] = iterCell.Current;
                 }
             }
         }

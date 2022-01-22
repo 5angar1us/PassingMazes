@@ -11,13 +11,17 @@ namespace PassingMazesAlgorithm.Core.Converters
     public class MapConverter
     {
         private NearestIndexConvertersFactory _nearestIndexConvertersFactory;
+        private NearestIndexConvertersFactory _nearestIndexConvertersFactory = new NearestIndexConvertersFactory();
 
         public MapConverter(NearestIndexConvertersFactory nearestIndexConvertersFactory)
+        public MapConverter()
         {
             _nearestIndexConvertersFactory = nearestIndexConvertersFactory;
+
         }
 
         public DataGraph ToGraph(Map map)
+        public DataGraph ToGraph(Maze map)
         {
             var dataGraph = new DataGraph();
 
@@ -31,6 +35,7 @@ namespace PassingMazesAlgorithm.Core.Converters
         }
 
         private IEnumerable<DataVertex> CreateVertices(Map map)
+        private IEnumerable<DataVertex> CreateVertices(Maze map)
         {
             var vertices = new List<DataVertex>();
             var wall = new Wall();
@@ -47,6 +52,7 @@ namespace PassingMazesAlgorithm.Core.Converters
         }
 
         private IEnumerable<DataEdge> CreateEdges(Map map, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdges(Maze map, IEnumerable<DataVertex> vertices)
         {
             return vertices
                 .Select(vertex => CreateEdge(map, vertex, vertices))
@@ -54,6 +60,7 @@ namespace PassingMazesAlgorithm.Core.Converters
         }
 
         private IEnumerable<DataEdge> CreateEdge(Map map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
+        private IEnumerable<DataEdge> CreateEdge(Maze map, DataVertex sourceVertex, IEnumerable<DataVertex> vertices)
         {
             (int row, int column) = map.IndexOf(sourceVertex.Name);
 
@@ -75,10 +82,12 @@ namespace PassingMazesAlgorithm.Core.Converters
                     (neighbornData, vertex) => (vertex, neighbornData.neighborSide));
 
             IEnumerable<DataEdge> edges = neighborVertexces.Select(neighborVertex =>
+            var edges = neighborVertexces.Select(neighborVertex =>
             {
                 (DataVertex targetVertex, ENeighborSide neighborSide) = neighborVertex;
                 return new DataEdge(sourceVertex, targetVertex, neighborSide);
             });
+
             return edges;
         }
 

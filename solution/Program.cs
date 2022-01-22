@@ -29,6 +29,12 @@ namespace PassingMazesAlgorithm.ConsoleApp
 
             var maze = new Maze(new MapParser(new MapFormatChecker()), new MapConverter(new NearestIndexConvertersFactory()));
             IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
+            var mapReader = new MapReader(args[0]);
+
+            Maze maze = mapReader.Read();
+
+            var pathFinder = new PathFinder(new MapConverter());
+            IEnumerable<DataEdge> path = pathFinder.Find(maze);
 
             var pathHandler = new PathHandler();
 
@@ -44,6 +50,7 @@ namespace PassingMazesAlgorithm.ConsoleApp
 
             Console.WriteLine(reportBuilder.Build());
         }
+
 
     }
 }
