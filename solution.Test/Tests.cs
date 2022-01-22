@@ -1,9 +1,8 @@
+using System.Text;
 using NUnit.Framework;
 using PassingMazesAlgorithm.ConsoleApp.UI;
 using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters;
 using PassingMazesAlgorithm.Core.MazeMap.Model;
-using PassingMazesAlgorithm.Core.Parsers;
-using System.Text;
 
 namespace PassingMazesAlgorithm.Core.Test
 {
@@ -30,7 +29,6 @@ namespace PassingMazesAlgorithm.Core.Test
         public void EqualMap()
         {
             var parser = new MapParser(new MapFormatChecker());
-            Map map = parser.Parse(sourceMaze);
             Maze map = parser.Parse(sourceMaze);
             var textMap = ReadMap(map);
 
@@ -50,7 +48,6 @@ namespace PassingMazesAlgorithm.Core.Test
             Assert.AreEqual(expectedRouteCommand, actualRouteCommand);
         }
 
-        private string ReadMap(Map map)
         private string ReadMap(Maze map)
         {
             var sb = new StringBuilder();

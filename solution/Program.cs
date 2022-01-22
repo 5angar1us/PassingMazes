@@ -1,13 +1,13 @@
-﻿using PassingMazesAlgorithm.ConsoleApp.UI;
+﻿using System;
+using System.Collections.Generic;
+using PassingMazesAlgorithm.ConsoleApp.UI;
 using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters;
 using PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Report;
 using PassingMazesAlgorithm.Core;
-using PassingMazesAlgorithm.Core.Graph.Model;
-using System.Collections.Generic;
-using System;
 using PassingMazesAlgorithm.Core.Converters;
-using PassingMazesAlgorithm.Core.Parsers;
-using PassingMazesAlgorithm.Core.NearestIndicesConverters;
+using PassingMazesAlgorithm.Core.Graph.Model;
+using PassingMazesAlgorithm.Core.MazeMap.Model;
+using PassingMazesAlgorithm.Core.Reader.Tokenizers;
 
 namespace PassingMazesAlgorithm.ConsoleApp
 {
@@ -15,20 +15,6 @@ namespace PassingMazesAlgorithm.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var sourceMaze = @"   10 10
-                            X X X X X X X X X X
-                            X S . . . . . . . X
-                            X X X X X . X X X X
-                            X . . . . . X . . X
-                            X . X . X X X X . X
-                            X . X . . . X X . X
-                            X . X X X . . . . X
-                            X . X . X . X X X X
-                            X . . . X . . . Q X
-                            X X X X X X X X X X";
-
-            var maze = new Maze(new MapParser(new MapFormatChecker()), new MapConverter(new NearestIndexConvertersFactory()));
-            IEnumerable<DataEdge> path = maze.FindWay(sourceMaze);
             var mapReader = new MapReader(args[0]);
 
             Maze maze = mapReader.Read();

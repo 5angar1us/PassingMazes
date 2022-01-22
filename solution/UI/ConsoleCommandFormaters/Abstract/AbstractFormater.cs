@@ -1,8 +1,7 @@
-﻿using PassingMazesAlgorithm.Core;
+﻿using System.Collections.Generic;
+using System.Text;
 using PassingMazesAlgorithm.Core.Graph.Model;
 using PassingMazesAlgorithm.Core.NearestIndicesConverters;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PassingMazesAlgorithm.ConsoleApp.UI.ConsoleCommandFormaters.Abstract
 {

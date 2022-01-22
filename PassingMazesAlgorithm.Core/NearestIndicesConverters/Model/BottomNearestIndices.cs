@@ -1,6 +1,4 @@
-﻿using PassingMazesAlgorithm.Core.NearestIndicesConverters.Model;
-
-namespace PassingMazesAlgorithm.Core.NearestIndicesConverters.Model
+﻿namespace PassingMazesAlgorithm.Core.NearestIndicesConverters.Model
 {
     class BottomNearestIndices : IDataNearestIndices
     {

@@ -1,9 +1,9 @@
-﻿using QuickGraph;
-using QuickGraph.Algorithms;
-using PassingMazesAlgorithm.Core.Graph.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PassingMazesAlgorithm.Core.Graph.Model;
+using QuickGraph;
+using QuickGraph.Algorithms;
 
 namespace PassingMazesAlgorithm.Core
 {
