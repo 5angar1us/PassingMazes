@@ -88,7 +88,7 @@ namespace PassingMazesAlgorithm.Core.Test
 
         public static string getMaze()
         {
-            string maze = PassingMazesAlgorithm.Test.Properties.Resources.Maze1;
+            string maze = PassingMazes.Test.Properties.Resources.Maze1;
 
             return maze;
         }

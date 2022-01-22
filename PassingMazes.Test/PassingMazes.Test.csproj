@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\solution\PassingMazesAlgorithm.ConsoleApp.csproj" />
+    <ProjectReference Include="..\PassingMazes.ConsoleApp\PassingMazes.ConsoleApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

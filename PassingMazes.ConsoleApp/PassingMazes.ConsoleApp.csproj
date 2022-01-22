@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PassingMazesAlgorithm.Core\PassingMazesAlgorithm.Core.csproj" />
+    <ProjectReference Include="..\PassingMazes.Core\PassingMazes.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

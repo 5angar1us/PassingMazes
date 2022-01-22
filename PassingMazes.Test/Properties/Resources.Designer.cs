@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PassingMazesAlgorithm.ConsoleApp.Properties {
+namespace PassingMazes.Test.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace PassingMazesAlgorithm.ConsoleApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PassingMazesAlgorithm.ConsoleApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PassingMazes.Test.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,44 @@ namespace PassingMazesAlgorithm.ConsoleApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 10 10
+        ///X X X X X X X X X X
+        ///X S . . . . . . . X
+        ///X X X X X . X X X X
+        ///X . . . . . X . . X
+        ///X . X . X X X X . X
+        ///X . X . . . X X . X
+        ///X . X X X . . . . X
+        ///X . X . X . X X X X
+        ///X . . . X . . . Q X
+        ///X X X X X X X X X X.
+        /// </summary>
+        internal static string Maze1 {
+            get {
+                return ResourceManager.GetString("Maze1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 10 10
+        ///X X X X X X X X X X
+        ///X . . . . . . . . X
+        ///X X X X X . X X X X
+        ///X . . . . . X . . X
+        ///X . X . X X X X . X
+        ///X . X . . . X X . X
+        ///X . X X X . . . . X
+        ///X . X S X . X X X X
+        ///X . . . X . . . Q X
+        ///X X X X X X X X X X.
+        /// </summary>
+        internal static string Maze2 {
+            get {
+                return ResourceManager.GetString("Maze2", resourceCulture);
             }
         }
     }
